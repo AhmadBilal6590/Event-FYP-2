@@ -52,7 +52,7 @@ export default class Home2 extends React.Component {
 					<TouchableOpacity
 						style={styles.userBtn}
 						// onPress={() => this.signIn(this.state.email, this.state.password)}
-						onPress={()=>this.props.navigation.navigate('Home')}
+						onPress={() => this.props.navigation.navigate('DashBoardMain')}
 					>
 						<Text style={styles.btnText}> Login</Text>
 					</TouchableOpacity>

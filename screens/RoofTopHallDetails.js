@@ -21,8 +21,6 @@ import {
 
 import { YellowBox } from "react-native";
 
-YellowBox.ignoreWarnings(["VirtualizedLists should never be nested"]);
-
 export default class RoofTopHallDetails extends Component {
 	constructor(props) {
 		super(props);
@@ -30,10 +28,10 @@ export default class RoofTopHallDetails extends Component {
 
 	/* onSelect(value){
 
-    this.props.navigation.navigate("SearchEvent")({
-      selected:value
+	this.props.navigation.navigate("SearchEvent")({
+	  selected:value
 
-    });
+	});
   }*/
 	render() {
 		return (
@@ -45,7 +43,7 @@ export default class RoofTopHallDetails extends Component {
 						</Button>
 					</Left>
 					<Body>
-                    <Text style={styles.textStyles}>Details</Text>
+						<Text style={styles.textStyles}>Details</Text>
 					</Body>
 
 					<Right />
