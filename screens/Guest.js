@@ -1,5 +1,5 @@
 import React, { Component, useState } from "react";
-import { Text, View, StyleSheet,FlatList } from "react-native";
+import { Text, View, StyleSheet, FlatList } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import {
 	Container,
@@ -16,78 +16,46 @@ import {
 } from "native-base";
 
 const Budget = ({ navigation }) => {
-	const data=[
-		'ahmad'
-	];
+	let data = [];
 	const [selectedValue, setSelectedValue] = useState(data);
 	const [addText, setAddText] = useState("");
 
-	const addData=()=>{
+	const addData = () => {
+		let us = selectedValue.push(addText);
 
+		setAddText("");
 
 	}
 	return (
 		<Container>
-			<Header hasSegment>
-				<Left>
-					<Button transparent>
-						<Icon
-							name="menu"
-							size={25}
-							onPress={() => navigation.navigate("DashBoardMain")}
-						/>
-					</Button>
-				</Left>
-				<Body>
-					<Segment style={{ margin: 5 }}>
-						<Button
-							first
-							style={{ right: 8 }}
-							onPress={() => navigation.goBack()}
-						>
-							<Text>Checklist</Text>
-						</Button>
-						<Button style={{ right: 5 }} active>
-							<Text>Guests</Text>
-						</Button>
-						<Button last>
-							<Text>Budget</Text>
-						</Button>
-					</Segment>
-				</Body>
 
-				<Right>
-					<Button transparent onPress={() => navigation.navigate("Home")}>
-						<Icon name="exit-to-app" size={25} />
-					</Button>
-				</Right>
-			</Header>
 
 			<Content padder>
 				<Item>
 					<Input
+						value={addText}
 						placeholder="Add to list"
-						 onChangeText={text => setAddText(text)}
+						onChangeText={text => setAddText(text)}
 					/>
 
 					<Button
 						style={{ marginRight: 12, padding: 10, width: 50 }}
 						onPress={() => {
-						addData()
+							addData()
 						}}
-						// onPress={()=>props.navigation.navigate('')}
+					// onPress={()=>props.navigation.navigate('')}
 					>
 						<Text style={{ color: "white" }} >Add</Text>
 					</Button>
 
 				</Item>
 
-	      <FlatList
-		  data={selectedValue}
-		  renderItem={({item})=>{
-			  return <Text style={styles.itemStyle}>{item.name}</Text>
+				<FlatList
+					data={selectedValue}
+					renderItem={({ item }) => {
+						return <Text style={styles.itemStyle}>{item}</Text>
 
-		  }}/>
+					}} />
 
 				<Button
 					style={{
@@ -101,7 +69,7 @@ const Budget = ({ navigation }) => {
 					onPress={() => {
 						alert("Create Guest");
 					}}
-					// onPress={()=>props.navigation.navigate('')}
+				// onPress={()=>props.navigation.navigate('')}
 				>
 					<Text style={{ color: "white", padding: 12 }}>Next</Text>
 				</Button>
@@ -149,15 +117,15 @@ export default Budget;
 
 const styles = StyleSheet.create({
 
-	itemStyle:{
-		width:'100%',
-		height:50,
-		paddingLeft:7,
-		paddingRight:5,
-		paddingBottom:4,
-		paddingTop:12,
-		fontSize:17,
-		borderBottomWidth:1,
+	itemStyle: {
+		width: '100%',
+		height: 50,
+		paddingLeft: 7,
+		paddingRight: 5,
+		paddingBottom: 4,
+		paddingTop: 12,
+		fontSize: 17,
+		borderBottomWidth: 1,
 		borderColor: "#c6c2c2",
 	}
 });

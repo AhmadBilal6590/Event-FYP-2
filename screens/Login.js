@@ -99,7 +99,7 @@ const Login = (props) => {
 			<View style={styles.btnContainer}>
 				<TouchableOpacity
 					style={styles.userBtn}
-					onPress={() => signIn()}
+					onPress={() => props.navigation.navigate("DashBoardMain")}
 				>
 					<Text style={styles.btnText}> Login</Text>
 				</TouchableOpacity>
