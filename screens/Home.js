@@ -1,46 +1,18 @@
-import React, { Component, useState } from "react";
-import {
-	Text,
-	View,
-	StyleSheet,
-	StatusBar,
-	ListView,
-	ImageBackground,
-	Picker,
-	ScrollView,
-	Image
-} from "react-native";
-import { AntDesign, SimpleLineIcons } from "@expo/vector-icons";
+import React from "react";
+import { Text, View, StyleSheet, Image } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import {
 	Container,
 	Header,
-	Title,
 	Content,
-	Footer,
-	FooterTab,
 	Button,
 	Left,
 	Right,
-	Spinner,
 	Body,
-	DeckSwiper,
 	Card,
 	CardItem,
 	Thumbnail
 } from "native-base";
-//import { Container, Content, Header, Form, Input, Item, Label, Icon, List, ListItem } from 'native-base';
-
-import { FontAwesome5 } from "@expo/vector-icons";
-
-import { SafeAreaView } from "react-native-safe-area-context";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import FontAwesome from "react-native-vector-icons/FontAwesome";
-import Feather from "react-native-vector-icons/Feather";
-import { color } from "react-native-reanimated";
-import { setStatusBarBackgroundColor } from "expo-status-bar";
-import { linear } from "react-native/Libraries/Animated/src/Easing";
-import { Divider } from "react-native-paper";
 
 const Home = ({ navigation }) => {
 	//  const [selectedValue, setSelectedValue] = useState("Select");

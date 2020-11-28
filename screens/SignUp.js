@@ -142,7 +142,6 @@ const Signup = (props) => {
 				<RadioButton.Item label="Vendor" value="vendor" />
 			</RadioButton.Group>
 
-
 			<View style={styles.btnContainer}>
 				<TouchableOpacity
 					style={styles.userBtn}
