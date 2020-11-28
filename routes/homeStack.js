@@ -1,30 +1,21 @@
-import React from 'react';
-import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native' ;
-import {createStackNavigator} from '@react-navigation/stack';
+import React from "react";
+import "react-native-gesture-handler";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Login from "./screens/Login";
+import SignUp from "./screens/SignUp";
 
-import { StatusBar } from 'expo-status-bar';
+const Stack = createStackNavigator();
 
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './screens/Login';
-import SignUp from './screens/SignUp';
+const MainStackNavigator = () => {
+	return (
+		<NavigationContainer>
+			<Stack.Navigator initailRoute>
+				<Stack.Screen name="Login" component={Login}></Stack.Screen>
+				<Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
+			</Stack.Navigator>
+		</NavigationContainer>
+	);
+};
 
-const Stack=createStackNavigator();
-
-const MainStackNavigator = () =>  {
-  return (
-    <NavigationContainer>
-      <Stack.Navigator  initailRoute>
-        <Stack.Screen name="Login" component={Login}></Stack.Screen>
-        <Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
-
-      </Stack.Navigator>
-    </NavigationContainer>
-
-
-
-  );
-}
-
-export {MainStackNavigator}
-
+export { MainStackNavigator };

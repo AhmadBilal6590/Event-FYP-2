@@ -44,18 +44,22 @@ export default class Home2 extends React.Component {
 
 				<TextInput style={styles.input} placeholder="Email" />
 
-
 				<TextInput
 					style={styles.input}
 					placeholder="Password"
 					secureTextEntry
 				/>
-					<TextInput
+				<TextInput
 					style={styles.input}
 					placeholder="Confirm Password"
 					secureTextEntry
 				/>
 
+				<TextInput
+					style={styles.input}
+					placeholder="Phone Number"
+
+				/>
 
 				<View style={styles.btnContainer}>
 					<TouchableOpacity
@@ -69,7 +73,7 @@ export default class Home2 extends React.Component {
 				<TouchableOpacity
 					// onPress={() => this.props.navigation.navigate("About")}
 
-					onPress={()=>this.props.navigation.navigate('Login')}
+					onPress={() => this.props.navigation.navigate("Login")}
 				>
 					<Text style={styles.su}>Do you have account? Login</Text>
 				</TouchableOpacity>
@@ -80,7 +84,7 @@ export default class Home2 extends React.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		flex:1,
+		flex: 1,
 		backgroundColor: "white",
 		alignItems: "center",
 		justifyContent: "center"
