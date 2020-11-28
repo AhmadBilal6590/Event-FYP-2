@@ -15,7 +15,7 @@ import {
 	Segment
 } from "native-base";
 
-const Budget = ({ navigation }) => {
+const Budget = (props) => {
 	let data = [];
 	const [selectedValue, setSelectedValue] = useState(data);
 	const [addText, setAddText] = useState("");
@@ -66,10 +66,10 @@ const Budget = ({ navigation }) => {
 						width: 80,
 						borderRadius: 10
 					}}
-					onPress={() => {
-						alert("Create Guest");
-					}}
-				// onPress={()=>props.navigation.navigate('')}
+					// onPress={() => {
+					// 	<MarqueeHallDetails />
+					// }}
+					onPress={() => { alert("ajaml") }}
 				>
 					<Text style={{ color: "white", padding: 12 }}>Next</Text>
 				</Button>

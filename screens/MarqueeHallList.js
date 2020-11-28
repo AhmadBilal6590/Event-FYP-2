@@ -21,7 +21,7 @@ const MarqueeHallList = ({ navigation }) => {
 		<Container>
 			<Header>
 				<Left>
-					<Button transparent onPress={() =>navigation.goBack()}>
+					<Button transparent onPress={() => navigation.goBack()}>
 						<Icon name="keyboard-backspace" size={25} />
 					</Button>
 				</Left>
@@ -66,7 +66,7 @@ const MarqueeHallList = ({ navigation }) => {
 						<Image
 							source={{
 								uri:
-                                "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCNgmFCzotQPxvB2TQuSU0baS6eMfldIiNfQ&usqp=CAU"
+									"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCNgmFCzotQPxvB2TQuSU0baS6eMfldIiNfQ&usqp=CAU"
 							}}
 							style={{ height: 200, width: null, flex: 1 }}
 						/>
@@ -83,7 +83,7 @@ const MarqueeHallList = ({ navigation }) => {
 								onPress={() => navigation.navigate("MarqueeHallDetails")}
 							>
 								<Icon active name="chevron-down" size={19} />
-								<Text>See more</Text>
+
 							</Button>
 						</Body>
 						<Right>
