@@ -7,76 +7,115 @@ import {
 	Button,
 	TouchableOpacity
 } from "react-native";
+import { Alert } from 'react-native'
+
+import axios from 'react-native-axios';
 // import * as firebase from 'firebase';
 
-export default class Home2 extends React.Component {
-	constructor(props) {
-		super(props);
+const Login = (props) => {
+	const [requiredEmail, setRequiredEmail] = React.useState('');
+	const [requiredpassword, setRequiredpassword] = React.useState('');
+	const [email, setEmail] = React.useState('');
+	const [password, setPassword] = React.useState('');
 
-		this.state = {
-			email: "",
-			password: ""
-		};
-	}
-	signIn = (email, password) => {
+	const signIn = () => {
+		const instance = axios.create({
+			baseURL: "https://demo-ajmal.herokuapp.com/api"
+		});
 		try {
-			if ((this.state.email, this.state.password)) {
-				firebase.auth().signInWithEmailAndPassword(email, password);
+			if ((email == '') || (password === "")) {
+				if (email === "") {
+					setRequiredEmail("Emailrequired")
 
-				return;
-			} else {
-				alert("Logged in Sucessfully");
-				this.props.navigation.navigate("Dashboard");
-				return;
+				}
+				else {
+					setRequiredEmail("")
+				}
+
+				if (password === "") {
+					setRequiredpassword("passwordrequired")
+
+				}
+				else {
+					setRequiredpassword("")
+				}
 			}
+			else {
+				setRequiredpassword("")
+				setRequiredEmail("")
+				console.log(email)
+				console.log(password)
+
+				instance.post("/signin", { email: email, password: password })
+					.then((res, error) => {
+						console.log(res.data.user.role)
+						if (res.status == 200) {
+							if (res.data.user.role == "admin") {
+								Alert.alert("admin")
+							}
+							if (res.data.user.role == "user") {
+								props.navigation.navigate("DashBoardMain")
+							}
+							if (res.data.user.role == "vendor") {
+								Alert.alert("vendor")
+							}
+						}
+
+						else if (res.status == 500) {
+							Alert.alert(res.data.message)
+						}
+						if (error) {
+							Alert.alert("error");
+						}
+					})
+					.catch((error) => { Alert.alert("Invalid Email And Password") })
+
+
+			}
+
 		} catch (error) {
 			console.log(error.toString());
 		}
-		alert("Logged In SucessFully");
 	};
 
-	render() {
-		return (
-			<View style={styles.container}>
-				<Text style={styles.login}>Log in</Text>
 
-				<TextInput style={styles.input} placeholder="Username" />
+	return (
+		<View style={styles.container}>
+			<Text style={styles.login}>Log in</Text>
 
-				<TextInput
-					style={styles.input}
-					placeholder="Password"
-					secureTextEntry
-				/>
-
-				<View style={styles.btnContainer}>
-					<TouchableOpacity
-						style={styles.userBtn}
-						// onPress={() => this.signIn(this.state.email, this.state.password)}
-						onPress={() => this.props.navigation.navigate('DashBoardMain')}
-					>
-						<Text style={styles.btnText}> Login</Text>
-					</TouchableOpacity>
-				</View>
-
-				{/* <View style={styles.btnContainer}>
-					<TouchableOpacity
-						style={styles.userBtnV}
-						// onPress={() => this.props.navigation.navigate("loginVendor")}
-					>
-						<Text style={styles.btnTextV}> Log in as Vendor</Text>
-					</TouchableOpacity>
-				</View> */}
-
+			<TextInput style={styles.input} placeholder="Email"
+				value={email}
+				onChangeText={text => { setEmail(text) }}
+			/>
+			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}> {requiredEmail}</Text>
+			<TextInput
+				style={styles.input}
+				placeholder="Password"
+				secureTextEntry
+				value={password}
+				onChangeText={text => { setPassword(text) }}
+			/>
+			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}> {requiredpassword}</Text>
+			<View style={styles.btnContainer}>
 				<TouchableOpacity
-					// onPress={() => this.props.navigation.navigate("About")}
-
-					onPress={() => this.props.navigation.navigate("SignUp")}
+					style={styles.userBtn}
+					onPress={() => signIn()}
 				>
-					<Text style={styles.su}>Do you have account? Create one</Text>
+					<Text style={styles.btnText}> Login</Text>
 				</TouchableOpacity>
 			</View>
-		);
-	}
+
+
+			<TouchableOpacity
+				// onPress={() => this.props.navigation.navigate("About")}
+
+				onPress={() => props.navigation.navigate("SignUp")}
+			>
+				<Text style={styles.su}>Do you have account? Create one</Text>
+			</TouchableOpacity>
+		</View>
+	);
+
 }
 
 const styles = StyleSheet.create({
@@ -165,3 +204,5 @@ const styles = StyleSheet.create({
 		fontSize: 12
 	}
 });
+
+export default Login;

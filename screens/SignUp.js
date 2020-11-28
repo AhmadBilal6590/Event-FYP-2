@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { RadioButton } from 'react-native-paper';
+import { Alert } from 'react-native'
+import axios from 'react-native-axios';
 import {
 	StyleSheet,
 	Text,
@@ -9,78 +12,161 @@ import {
 } from "react-native";
 // import * as firebase from 'firebase';
 
-export default class Home2 extends React.Component {
-	constructor(props) {
-		super(props);
+const Signup = (props) => {
+	const instance = axios.create({
+		baseURL: "https://demo-ajmal.herokuapp.com/api"
+	});
 
-		this.state = {
-			email: "",
-			password: ""
-		};
-	}
-	signIn = (email, password) => {
+	const [requiredfirstName, setRequiredfirstName] = React.useState('');
+	const [requiredlastName, setrequiredlastName] = React.useState('');
+
+	const [role, setRole] = React.useState('user');
+	const [firstName, setFirstName] = React.useState('');
+	const [lastName, setLastName] = React.useState('');
+	const [requiredEmail, setRequiredEmail] = React.useState('');
+	const [requiredpassword, setRequiredpassword] = React.useState('');
+	const [email, setEmail] = React.useState('');
+	const [password, setPassword] = React.useState('');
+
+
+
+	const signIn = () => {
 		try {
-			if ((this.state.email, this.state.password)) {
-				firebase.auth().signInWithEmailAndPassword(email, password);
+			if ((email == '') || (firstName === '') || (lastName === "") || (password === "")) {
+				if (email === "") {
+					setRequiredEmail("Emailrequired")
 
-				return;
-			} else {
-				alert("Logged in Sucessfully");
-				this.props.navigation.navigate("Dashboard");
-				return;
+				}
+				else {
+					setRequiredEmail("")
+				}
+				if (firstName === "") {
+					setRequiredfirstName("firstNameRequired")
+
+				}
+				else {
+
+					setRequiredfirstName("")
+
+				}
+				if (lastName === "") {
+					setrequiredlastName("lastNamerequired")
+
+				}
+				else {
+					setrequiredlastName("")
+				}
+				if (password === "") {
+					setRequiredpassword("passwordrequired")
+
+				}
+				else {
+					setRequiredpassword("")
+				}
+
+			}
+			else {
+				setRequiredEmail("")
+				setRequiredfirstName("")
+				setrequiredlastName("")
+				setRequiredpassword("")
+				console.log(firstName)
+				console.log(lastName)
+				console.log(email)
+				console.log(password)
+				console.log(role)
+				instance.post("/signup", { firstName: firstName, lastName: lastName, email: email, password: password, role: role })
+					.then((res, error) => {
+						if (res.status == 200) {
+							Alert.alert(res.data.message);
+						}
+						if (res.status == 201) {
+							Alert.alert(res.data.message);
+						}
+						else if (res.status == 400) {
+							Alert.alert(res.data.message)
+						}
+						if (error) {
+							Alert.alert("error");
+						}
+					})
+					.catch((error) => { Alert.alert("Please fill all fields") })
+
+
 			}
 		} catch (error) {
 			console.log(error.toString());
 		}
-		alert("Logged In SucessFully");
+
+
 	};
 
-	render() {
-		return (
-			<View style={styles.container}>
-				<Text style={styles.login}>Sign Up</Text>
+	return (
+		<View style={styles.container}>
+			<Text style={styles.login}>Sign Up</Text>
 
-				<TextInput style={styles.input} placeholder="Username" />
+			<TextInput
+				style={styles.input}
 
-				<TextInput style={styles.input} placeholder="Email" />
+				placeholder="FirstName"
+				value={firstName}
+				onChangeText={text => { setFirstName(text) }} />
+			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}>{requiredfirstName}</Text>
+			<TextInput
+				style={styles.input}
+				placeholder="lastName"
+				value={lastName}
+				onChangeText={text => { setLastName(text) }}
+			/>
+			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}>{requiredlastName}</Text>
+			<TextInput
+				style={styles.input}
+				placeholder="Email"
+				value={email}
+				onChangeText={text => { setEmail(text) }}
+			/>
+			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}> {requiredEmail}</Text>
+
+			<TextInput
+				style={styles.input}
+				placeholder="Password Atleast 6 charcters"
+				secureTextEntry
+				value={password}
+				onChangeText={text => { setPassword(text) }}
+			/>
+
+			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}> {requiredpassword}</Text>
+
+			<RadioButton.Group onValueChange={value => setRole(value)} value={role}>
+				<RadioButton.Item label="User" value="user" />
+				<RadioButton.Item label="Vendor" value="vendor" />
+			</RadioButton.Group>
 
 
-				<TextInput
-					style={styles.input}
-					placeholder="Password"
-					secureTextEntry
-				/>
-					<TextInput
-					style={styles.input}
-					placeholder="Confirm Password"
-					secureTextEntry
-				/>
-
-
-				<View style={styles.btnContainer}>
-					<TouchableOpacity
-						style={styles.userBtn}
-						// onPress={() => this.signIn(this.state.email, this.state.password)}
-					>
-						<Text style={styles.btnText}> Sign Up</Text>
-					</TouchableOpacity>
-				</View>
-
+			<View style={styles.btnContainer}>
 				<TouchableOpacity
-					// onPress={() => this.props.navigation.navigate("About")}
-
-					onPress={()=>this.props.navigation.navigate('Login')}
+					style={styles.userBtn}
+					onPress={() => signIn()}
 				>
-					<Text style={styles.su}>Do you have account? Login</Text>
+					<Text style={styles.btnText}> Sign Up</Text>
 				</TouchableOpacity>
 			</View>
-		);
-	}
+
+			<TouchableOpacity
+				// onPress={() => this.props.navigation.navigate("About")}
+
+				onPress={() => props.navigation.navigate('Login')}
+			>
+				<Text style={styles.su}>Do you have account? Login</Text>
+			</TouchableOpacity>
+		</View>
+	);
 }
+
 
 const styles = StyleSheet.create({
 	container: {
-		flex:1,
+		flex: 1,
 		backgroundColor: "white",
 		alignItems: "center",
 		justifyContent: "center"
@@ -98,6 +184,7 @@ const styles = StyleSheet.create({
 	},
 
 	login: {
+
 		padding: 10,
 		margin: 10,
 		fontSize: 30,
@@ -167,3 +254,5 @@ const styles = StyleSheet.create({
 		fontSize: 12
 	}
 });
+
+export default Signup;
