@@ -6,20 +6,20 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "./screens/Login";
 import SignUp from "./screens/SignUp";
 import DashBoard from "./screens/DashBoard";
-import BanqueetHallList from "./screens/BanqueetHallList";
 import BanqueetHallDetails from "./screens/BanqueetHallDetails";
-import MarqueeHallList from "./screens/MarqueeHallList";
+import MarqueeHallList from "./screens/Halls";
 import MarqueeHallDetails from "./screens/MarqueeHallDetails";
 import DrawerNavigator from "./screens/DrawerNavigator";
-import RoofTopHallList from "./screens/RoofTopHallList";
 import RoofTopHallDetails from "./screens/RoofTopHallDetails";
 import Guest from "./screens/Guest";
 import UserProfileEdit from "./screens/UserProfileEdit";
 const Stack = createStackNavigator();
 
-export default function App() {
+export default function App(props) {
 	return (
+
 		<NavigationContainer>
+
 			<Stack.Navigator
 				initialRouteName="Login"
 				screenOptions={{ headerShown: false }}
@@ -27,10 +27,7 @@ export default function App() {
 				<Stack.Screen name="Login" component={Login}></Stack.Screen>
 				<Stack.Screen name="SignUp" component={SignUp}></Stack.Screen>
 				<Stack.Screen name="DashBoard" component={DashBoard}></Stack.Screen>
-				<Stack.Screen
-					name="BanqueetHallList"
-					component={BanqueetHallList}
-				></Stack.Screen>
+
 				<Stack.Screen
 					name="BanqueetHallDetails"
 					component={BanqueetHallDetails}
@@ -46,11 +43,9 @@ export default function App() {
 				<Stack.Screen
 					name="DashBoardMain"
 					component={DrawerNavigator}
+					user_id={props}
 				></Stack.Screen>
-				<Stack.Screen
-					name="RoofTopHallList"
-					component={RoofTopHallList}
-				></Stack.Screen>
+
 				<Stack.Screen
 					name="RoofTopHallDetails"
 					component={RoofTopHallDetails}

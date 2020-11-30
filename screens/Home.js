@@ -14,7 +14,7 @@ import {
 	Thumbnail
 } from "native-base";
 
-const Home = ({ navigation }) => {
+const Home = (props) => {
 	//  const [selectedValue, setSelectedValue] = useState("Select");
 	return (
 		<Container>
@@ -24,7 +24,7 @@ const Home = ({ navigation }) => {
 						<Icon
 							name="menu"
 							size={25}
-							onPress={() => navigation.openDrawer()}
+							onPress={() => props.navigation.openDrawer()}
 						/>
 					</Button>
 				</Left>
@@ -33,7 +33,7 @@ const Home = ({ navigation }) => {
 				</Body>
 
 				<Right>
-					<Button transparent onPress={() => navigation.popToTop()}>
+					<Button transparent onPress={() => props.navigation.popToTop()}>
 						<Icon name="exit-to-app" size={25} />
 					</Button>
 				</Right>
@@ -67,7 +67,7 @@ const Home = ({ navigation }) => {
 								}}
 							/>
 							<Body>
-								<Text>Instantly Create Event Now</Text>
+								<Text>Create Your Event Now</Text>
 							</Body>
 						</Left>
 					</CardItem>
@@ -87,12 +87,18 @@ const Home = ({ navigation }) => {
 							</Button>
 						</Left>
 						<Body>
+
 							<Button
 								transparent
-								onPress={() => navigation.navigate("DashBoard")}
+								onPress={() => {
+									let user_id = props.route.params.props.route.params.user_id
+
+
+									props.navigation.navigate("DashBoard", { user_id: user_id })
+								}}
 							>
-								<Icon active name="chevron-down" size={19} />
-								<Text>See more</Text>
+								<Icon active name="chevron-right" size={19} />
+								<Text>Click here to create</Text>
 							</Button>
 						</Body>
 						<Right>
@@ -101,46 +107,7 @@ const Home = ({ navigation }) => {
 					</CardItem>
 				</Card>
 
-				<Card>
-					<CardItem>
-						<Left>
-							<Thumbnail
-								source={{
-									uri:
-										"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqOWokBUaDI1lDzQVOTRKQbqwKna-cPWaTBw&usqp=CAU"
-								}}
-							/>
-							<Body>
-								<Text>Show Venues</Text>
-							</Body>
-						</Left>
-					</CardItem>
-					<CardItem cardBody>
-						<Image
-							source={{
-								uri:
-									"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRTxG4C6pxXUhStpdGkq3SiiOciGzJT1nVFiA&usqp=CAU"
-							}}
-							style={{ height: 200, width: null, flex: 1 }}
-						/>
-					</CardItem>
-					<CardItem>
-						<Left>
-							<Button transparent>
-								<Text></Text>
-							</Button>
-						</Left>
-						<Body>
-							<Button transparent>
-								<Icon active name="chevron-down" size={19} />
-								<Text>See more</Text>
-							</Button>
-						</Body>
-						<Right>
-							<Text></Text>
-						</Right>
-					</CardItem>
-				</Card>
+
 				<Text
 					style={{
 						fontSize: 18,

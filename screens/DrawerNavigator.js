@@ -7,13 +7,13 @@ import UserProfile from "./UserProfile";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
-	const dimensions = useWindowDimensions();
+const DrawerNavigator = (props) => {
+	const dimensions = useWindowDimensions(props);
 	return (
-		<Drawer.Navigator>
-			<Drawer.Screen name="Home" component={Home} />
+		<Drawer.Navigator >
+			<Drawer.Screen name="Home" component={Home} initialParams={{ props }} />
 			<Drawer.Screen name="Planning tools" component={PlanningTools} />
-            <Drawer.Screen name="UserProfile" component={UserProfile} />
+			<Drawer.Screen name="UserProfile" component={UserProfile} />
 		</Drawer.Navigator>
 	);
 };
