@@ -105,6 +105,15 @@ const Login = (props) => {
 				</TouchableOpacity>
 			</View>
 
+			<View style={styles.btnContainer}>
+				<TouchableOpacity
+					style={styles.userBtnV}
+					onPress={() => props.navigation.navigate("VendorDrawer")}
+				>
+					<Text style={styles.btnText}> Login as a Vendor</Text>
+				</TouchableOpacity>
+			</View>
+
 
 			<TouchableOpacity
 				// onPress={() => this.props.navigation.navigate("About")}
@@ -178,17 +187,17 @@ const styles = StyleSheet.create({
 		marginTop: 1
 	},
 
-	// userBtnV: {
-	// 	backgroundColor: "#C381EE",
-	// 	padding: 17,
-	// 	width: "90%",
-	// 	alignItems: "center",
-	// 	borderRadius: 25,
-	// 	borderWidth: 0,
-	// 	marginRight: 5,
-	// 	marginLeft: 5,
-	// 	marginTop: 1
-	// },
+	userBtnV: {
+		backgroundColor: "#C381EE",
+		padding: 17,
+		width: "90%",
+		alignItems: "center",
+		borderRadius: 25,
+		borderWidth: 0,
+		marginRight: 5,
+		marginLeft: 5,
+		marginTop: 1
+	},
 
 	btnText: {
 		color: "white",
