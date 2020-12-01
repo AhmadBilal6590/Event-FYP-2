@@ -14,7 +14,7 @@ import {
 	Thumbnail
 } from "native-base";
 
-const createVendor = ({ navigation }) => {
+const createVendor = (props) => {
 	//  const [selectedValue, setSelectedValue] = useState("Select");
 	return (
 		<Container>
@@ -24,7 +24,7 @@ const createVendor = ({ navigation }) => {
 						<Icon
 							name="menu"
 							size={25}
-							onPress={() => navigation.openDrawer()}
+							onPress={() => props.navigation.openDrawer()}
 						/>
 					</Button>
 				</Left>
@@ -33,7 +33,7 @@ const createVendor = ({ navigation }) => {
 				</Body>
 
 				<Right>
-					<Button transparent onPress={() => navigation.popToTop()}>
+					<Button transparent onPress={() => props.navigation.popToTop()}>
 						<Icon name="exit-to-app" size={25} />
 					</Button>
 				</Right>
@@ -89,10 +89,10 @@ const createVendor = ({ navigation }) => {
 						<Body>
 							<Button
 								transparent
-								onPress={() => navigation.navigate('CreateService')}
+								onPress={() => props.navigation.navigate('CreateService', props)}
 							>
 								<Icon active name="chevron-down" size={19} />
-								<Text style={{marginRight:25}}>Create</Text>
+								<Text style={{ marginRight: 25 }}>Create</Text>
 							</Button>
 						</Body>
 						<Right>

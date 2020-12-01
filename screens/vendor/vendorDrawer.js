@@ -6,11 +6,12 @@ import VendorCheckList from "./vendorCheckList";
 const Drawer = createDrawerNavigator();
 
 const vendorDrawer = (props) => {
+
 	const dimensions = useWindowDimensions();
 
 	return (
 		<Drawer.Navigator>
-			<Drawer.Screen name="Home" component={CreateVendor} />
+			<Drawer.Screen name="Home" component={CreateVendor} initialParams={props} />
 			<Drawer.Screen name="CheckList" component={VendorCheckList} />
 
 		</Drawer.Navigator>

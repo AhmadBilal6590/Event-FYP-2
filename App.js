@@ -12,7 +12,6 @@ import MarqueeHallDetails from "./screens/MarqueeHallDetails";
 import DrawerNavigator from "./screens/DrawerNavigator";
 import RoofTopHallDetails from "./screens/RoofTopHallDetails";
 import Guest from "./screens/Guest";
-import UserProfileEdit from "./screens/UserProfileEdit";
 import CreateService from "./screens/vendor/createService";
 import VendorDrawer from "./screens/vendor/vendorDrawer";
 const Stack = createStackNavigator();
@@ -26,7 +25,7 @@ export default function App(props) {
 				initialRouteName="Login"
 				screenOptions={{ headerShown: false }}
 			>
-				 <Stack.Screen
+				<Stack.Screen
 					name="CreateService"
 					component={CreateService}
 				></Stack.Screen>
@@ -62,10 +61,7 @@ export default function App(props) {
 					name="RoofTopHallDetails"
 					component={RoofTopHallDetails}
 				></Stack.Screen>
-				<Stack.Screen
-					name="UserProfileEdit"
-					component={UserProfileEdit}
-				></Stack.Screen>
+
 				<Stack.Screen name="Guest" component={Guest} />
 			</Stack.Navigator>
 		</NavigationContainer>
