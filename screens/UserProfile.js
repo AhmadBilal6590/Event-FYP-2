@@ -55,6 +55,7 @@ const UserProfile = (props) => {
 
 				}
 
+
 				else if (res.status == 500) {
 					Alert.alert(res.data.message)
 				}
