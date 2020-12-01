@@ -14,6 +14,7 @@ import RoofTopHallDetails from "./screens/RoofTopHallDetails";
 import Guest from "./screens/Guest";
 import CreateService from "./screens/vendor/createService";
 import VendorDrawer from "./screens/vendor/vendorDrawer";
+import AdminDrawer from "./screens/admin/adminDrawer";
 const Stack = createStackNavigator();
 
 export default function App(props) {
@@ -33,6 +34,8 @@ export default function App(props) {
 					name="VendorDrawer"
 					component={VendorDrawer}
 				></Stack.Screen>
+
+				<Stack.Screen name="AdminDrawer" component={AdminDrawer}></Stack.Screen>
 
 				<Stack.Screen name="Login" component={Login}></Stack.Screen>
 

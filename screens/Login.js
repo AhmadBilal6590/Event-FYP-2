@@ -116,6 +116,15 @@ const Login = (props) => {
 				</TouchableOpacity>
 			</View>
 
+			<View style={styles.btnContainer}>
+				<TouchableOpacity
+					style={styles.userBtnV}
+					onPress={() => props.navigation.navigate("AdminDrawer")}
+				>
+					<Text style={styles.btnText}> Login as a admin</Text>
+				</TouchableOpacity>
+			</View>
+
 
 			<TouchableOpacity
 				// onPress={() => this.props.navigation.navigate("About")}
