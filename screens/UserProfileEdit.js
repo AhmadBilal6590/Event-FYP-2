@@ -1,15 +1,57 @@
 import React, { Component, useState } from "react";
-import { Text, View, StyleSheet, ImageBackground } from "react-native";
+import { Text, View, StyleSheet, ImageBackground, Header, Button, Left, Body } from "react-native";
 
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
 import { TextInput } from "react-native-paper";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
+import axios from 'react-native-axios'
+const instance = axios.create({
+	baseURL: "https://demo-ajmal.herokuapp.com/api"
+})
+const UserProfileEdit = (props) => {
+	const _id = props.route.params._id;
+	const fullName = props.route.params.fullName;
+	const email = props.route.params.email;
+	const firstName = props.route.params.firstName;
 
-const UserProfileEdit = ({ navigation }) => {
+
+	const lastName = props.route.params.lastName;
+	const password = props.route.params.password;
+	const phone = props.route.params.phone;
+	console.log(phone)
+	const [updatedfullName, setfullName] = React.useState(fullName)
+	const [updatedEmail, setupdatedEmail] = React.useState(email)
+	const [updatedfirstName, setfirstName] = React.useState(firstName)
+	const [updatedlastName, setlastName] = React.useState(lastName)
+	const [updatedPassword, setpassword] = React.useState(password)
+	const [updatedPhone, setphone] = React.useState(phone)
+
+	const updated = async () => {
+
+		const f = updatedfirstName + " " + updatedlastName
+		console.log(f)
+		setfullName(f);
+		console.log("phone", updatedPhone, updatedEmail, updatedPassword)
+		const res = await instance.post('update',
+			{
+				_id: _id,
+				email: updatedEmail,
+				password: updatedPassword,
+				updatedPhone: updatedPhone,
+				firstName: updatedfirstName,
+				lastName: updatedlastName
+			})
+		if (res.status == 201) {
+			alert("updatedSuccessfully")
+		}
+	}
+
+
 	return (
 		<View style={styles.container}>
+
 			<View style={{ Margin: 20 }}>
 				<View style={{ alignItems: "center" }}>
 					<TouchableOpacity>
@@ -55,13 +97,15 @@ const UserProfileEdit = ({ navigation }) => {
 							fontWeight: "bold"
 						}}
 					>
-						Faiz ur Rehman
+						{updatedfullName}
 					</Text>
 				</View>
 				<View style={styles.actionIcon}>
 					<FontAwesome name="user-o" size={25} style={styles.iconStyle} />
 					<TextInput
 						placeholder="First Name"
+						value={updatedfirstName}
+						onChangeText={(text) => { setfirstName(text) }}
 						backgroundColor="#F5F5F5"
 						placeholderTextColor="#666666"
 						autoCorrect={false}
@@ -76,17 +120,21 @@ const UserProfileEdit = ({ navigation }) => {
 						placeholderTextColor="#666666"
 						autoCorrect={false}
 						style={[styles.textInput]}
+						value={updatedlastName}
+						onChangeText={(text) => { setlastName(text) }}
 					/>
 				</View>
 				<View style={styles.actionIcon}>
 					<FontAwesome name="phone" size={25} style={styles.iconStyle} />
 					<TextInput
 						placeholder="Phone Number"
-						keyboardType="number-pad"
+						keyboardType="numeric"
 						backgroundColor="#F5F5F5"
 						placeholderTextColor="#666666"
-						autoCorrect={false}
+
 						style={[styles.textInput]}
+						value={updatedPhone}
+						onChangeText={(text) => { setphone(text) }}
 					/>
 				</View>
 
@@ -99,6 +147,8 @@ const UserProfileEdit = ({ navigation }) => {
 						placeholderTextColor="#666666"
 						autoCorrect={false}
 						style={[styles.textInput]}
+						value={updatedEmail}
+						onChangeText={(text) => { setupdatedEmail(text) }}
 					/>
 				</View>
 
@@ -109,16 +159,24 @@ const UserProfileEdit = ({ navigation }) => {
 						style={styles.iconStyle}
 					/>
 					<TextInput
-						placeholder="City"
+						secureTextEntry
+						placeholder="password"
 						backgroundColor="#F5F5F5"
 						placeholderTextColor="#666666"
 						autoCorrect={false}
 						style={[styles.textInput]}
+						value={updatedPassword}
+						onChangeText={(text) => { setpassword(text) }}
 					/>
 				</View>
 				<View style={styles.btnContainer}>
-					<TouchableOpacity style={styles.userBtn} onPress={() => {}}>
+					<TouchableOpacity style={styles.userBtn} onPress={() => { updated() }}>
 						<Text style={styles.btnText}>Submit</Text>
+					</TouchableOpacity>
+				</View>
+				<View style={styles.btnContainer}>
+					<TouchableOpacity onPress={() => { props.navigation.goBack() }}>
+						<Text style={{ color: "black", fontSize: 15 }}>ClickmeForgoBack</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -128,59 +186,5 @@ const UserProfileEdit = ({ navigation }) => {
 export default UserProfileEdit;
 
 const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-		backgroundColor: "white"
-	},
 
-	actionIcon: {
-		flexDirection: "row",
-		marginTop: 8,
-		marginLeft: 6,
-		borderBottomWidth: -20,
-		borderBottomColor: "#f2f2f2",
-
-		width: "90%",
-		padding: -10,
-		paddingLeft: 18
-	},
-
-	textInput: {
-		flex: 1,
-		color: "#05375a"
-	},
-
-	btnContainer: {
-		alignContent: "center",
-		alignItems: "center",
-		paddingLeft: 90,
-		paddingTop: 10,
-		width: "75%"
-	},
-
-	userBtn: {
-		backgroundColor: "#F56F6F",
-		paddingTop: 20,
-		paddingBottom: 20,
-		paddingRight: 35,
-		paddingLeft: 35,
-		width: "100%",
-		alignContent: "center",
-		alignItems: "center",
-		borderRadius: 15,
-		borderWidth: 0,
-		marginRight: 20,
-		marginLeft: 20
-	},
-
-	btnText: {
-		backgroundColor: "#F56F6F",
-		color: "white",
-		fontSize: 17,
-		color: "white"
-    },
-    iconStyle:{
-       marginTop:15,
-       marginLeft:0,
-    }
 });

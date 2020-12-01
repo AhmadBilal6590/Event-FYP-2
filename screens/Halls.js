@@ -31,7 +31,7 @@ const MarqueeHallList = (props) => {
 	React.useEffect(() => {
 		async function fetchData() {
 			const res = await instance.post('/service/getall')
-			
+			console.log(props.route.params.item.selectedValue)
 			setRes(res.data.message)
 
 		}
@@ -73,67 +73,67 @@ const MarqueeHallList = (props) => {
 				</Text>
 				{res.map((text, index) => {
                         
-					if (text.serviceName == props.route.params.item.selectedValue) {
-						return (
-							<Card>
-								<CardItem>
-									<Left>
-
-										{props.route.params.item.selectedValue === "Marquee" ?
-											<Thumbnail
-
-												source={{
-
-													uri:
-														"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
-												}}
-											/> : null}
-										{props.route.params.item.selectedValue === "Banquet Halls" ?
-											<Thumbnail
-
-												source={{
-
-													uri:
-														"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
-												}}
-											/> : null}
-										{props.route.params.selectedValue === "RoofTop" ?
-											<Thumbnail
-
-												source={{
-
-													uri:
-														"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
-												}}
-											/> : null}
-										<Body>
-											<Text><Text>Venue Type  :  {text.serviceName}</Text>{"\n"}
-												<Text >  Venue Name  :   {text.venueName}</Text></Text>
-										</Body>
-									</Left>
-								</CardItem>
-								<CardItem cardBody>
-									{props.route.params.item.selectedValue === "Marquee" ? <Image
-										source={{
-											uri:
-												"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCNgmFCzotQPxvB2TQuSU0baS6eMfldIiNfQ&usqp=CAU"
-										}}
-										style={{ height: 200, width: null, flex: 1 }}
-									/> : null}
-									{props.route.params.item.selectedValue === "Banquet Halls" ? <Image
-										source={{
-											uri:
-												"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCNgmFCzotQPxvB2TQuSU0baS6eMfldIiNfQ&usqp=CAU"
-										}}
-										style={{ height: 200, width: null, flex: 1 }}
-									/> : null}
-									{props.route.params.item.selectedValue === "RoofTop" ? <Image
-										source={{
-											uri:
-												"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCNgmFCzotQPxvB2TQuSU0baS6eMfldIiNfQ&usqp=CAU"
-										}}
-										style={{ height: 200, width: null, flex: 1 }}
-									/> : null}
+						if (text.serviceName == props.route.params.item.selectedValue) {
+							return (
+								<Card>
+									<CardItem>
+										<Left>
+	
+											{props.route.params.item.selectedValue === "Marquee" ?
+												<Thumbnail
+	
+													source={{
+	
+														uri:
+															"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
+													}}
+												/> : null}
+											{props.route.params.item.selectedValue === "Banquet" ?
+												<Thumbnail
+	
+													source={{
+	
+														uri:
+															"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
+													}}
+												/> : null}
+											{props.route.params.selectedValue === "RoofTop" ?
+												<Thumbnail
+	
+													source={{
+	
+														uri:
+															"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
+													}}
+												/> : null}
+											<Body>
+												<Text><Text>Venue Type  :  {text.serviceName}</Text>{"\n"}
+													<Text >  Venue Name  :   {text.venueName}</Text></Text>
+											</Body>
+										</Left>
+									</CardItem>
+									<CardItem cardBody>
+										{props.route.params.item.selectedValue === "Marquee" ? <Image
+											source={{
+												uri:
+													"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCNgmFCzotQPxvB2TQuSU0baS6eMfldIiNfQ&usqp=CAU"
+											}}
+											style={{ height: 200, width: null, flex: 1 }}
+										/> : null}
+										{props.route.params.item.selectedValue === "Banquet" ? <Image
+											source={{
+												uri:
+													"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCNgmFCzotQPxvB2TQuSU0baS6eMfldIiNfQ&usqp=CAU"
+											}}
+											style={{ height: 200, width: null, flex: 1 }}
+										/> : null}
+										{props.route.params.item.selectedValue === "RoofTop" ? <Image
+											source={{
+												uri:
+													"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSCNgmFCzotQPxvB2TQuSU0baS6eMfldIiNfQ&usqp=CAU"
+											}}
+											style={{ height: 200, width: null, flex: 1 }}
+										/> : null}
 								</CardItem>
 								<CardItem>
 									<Left>
@@ -143,7 +143,7 @@ const MarqueeHallList = (props) => {
 									</Left>
 									<Body>
 								
-									{/* {item.push()} */}
+									
 									
 							
 									

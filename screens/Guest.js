@@ -82,17 +82,10 @@ const Budget = (props) => {
 					// }}
 					onPress={
 						() => {
-							console.log("guest", selectedValue)
-							if (item.selectedValue == "RoofTop") {
-								props.navigation.navigate("RoofTopHallDetails", { item, selectedValue })
 
-							}
-							else if (item.selectedValue == "Banquet Halls") {
-								props.navigation.navigate("BanqueetHallDetails", item, selectedValue)
-							}
-							else if (item.selectedValue == "Marquee") {
-								props.navigation.navigate("MarqueeHallDetails", item, selectedValue)
-							}
+							props.navigation.navigate("RoofTopHallDetails", { item, selectedValue })
+
+
 						}
 					}
 				>

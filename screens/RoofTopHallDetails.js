@@ -90,6 +90,11 @@ const RoofTopHallDetails = (props) => {
 				</Body>
 
 				<Right />
+				<Right>
+					<Button transparent onPress={() => props.navigation.popToTop()}>
+						<Icon name="exit-to-app" size={25} />
+					</Button>
+				</Right>
 			</Header>
 
 			<Content>
@@ -103,7 +108,7 @@ const RoofTopHallDetails = (props) => {
 
 				<Card>
 					<CardItem header>
-						<Text style={{ fontWeight: "bold" }}>Tulip Banquet Hall</Text>
+						<Text style={{ fontWeight: "bold" }}>{props.route.params.item.selectedValue}</Text>
 					</CardItem>
 					<CardItem>
 						<Body>

@@ -19,6 +19,7 @@ const Signup = (props) => {
 
 	const [requiredfirstName, setRequiredfirstName] = React.useState('');
 	const [requiredlastName, setrequiredlastName] = React.useState('');
+	const [requiredPhone, setrequiredPhone] = React.useState('');
 
 	const [role, setRole] = React.useState('user');
 	const [firstName, setFirstName] = React.useState('');
@@ -26,19 +27,30 @@ const Signup = (props) => {
 	const [requiredEmail, setRequiredEmail] = React.useState('');
 	const [requiredpassword, setRequiredpassword] = React.useState('');
 	const [email, setEmail] = React.useState('');
+	const [phone, setPhone] = React.useState('');
 	const [password, setPassword] = React.useState('');
 
 
 
 	const signIn = () => {
 		try {
-			if ((email == '') || (firstName === '') || (lastName === "") || (password === "")) {
+			if ((email == '') || (firstName === '') || (lastName === "") || (password === "") || (phone == "")) {
 				if (email === "") {
 					setRequiredEmail("Emailrequired")
 
 				}
+
 				else {
 					setRequiredEmail("")
+				}
+				if (phone === "") {
+					setrequiredPhone("phoneRequired")
+
+				}
+				else {
+
+					setrequiredPhone("")
+
 				}
 				if (firstName === "") {
 					setRequiredfirstName("firstNameRequired")
@@ -67,15 +79,12 @@ const Signup = (props) => {
 			}
 			else {
 				setRequiredEmail("")
+				setrequiredPhone("")
 				setRequiredfirstName("")
 				setrequiredlastName("")
 				setRequiredpassword("")
-				console.log(firstName)
-				console.log(lastName)
-				console.log(email)
-				console.log(password)
-				console.log(role)
-				instance.post("/signup", { firstName: firstName, lastName: lastName, email: email, password: password, role: role })
+				console.log(phone)
+				instance.post("/signup", { firstName: firstName, lastName: lastName, email: email, password: password, role: role, phone: phone })
 					.then((res, error) => {
 						if (res.status == 200) {
 							Alert.alert(res.data.message);
@@ -127,6 +136,14 @@ const Signup = (props) => {
 			/>
 			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}> {requiredEmail}</Text>
 
+			<TextInput
+				style={styles.input}
+				placeholder="Phone Number"
+				keyboardType="number-pad"
+				value={phone}
+				onChangeText={text => { setPhone(text) }}
+			/>
+			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}>{requiredPhone}</Text>
 			<TextInput
 				style={styles.input}
 				placeholder="Password Atleast 6 charcters"

@@ -20,7 +20,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { round } from "react-native-reanimated";
 
 const Dashboard = (props) => {
-	const [selectedValue, setSelectedValue] = useState("Banquet Halls");
+	const [selectedValue, setSelectedValue] = useState("Banquet");
 
 	return (
 		<Container>
@@ -71,7 +71,7 @@ const Dashboard = (props) => {
 						selectedValue={selectedValue}
 						onValueChange={(value, index) => setSelectedValue(value)}
 					>
-						<Picker.Item label="Banquet Halls" value="Banquet Halls" />
+						<Picker.Item label="Banquet" value="Banquet" />
 						<Picker.Item label="Marquee" value="Marquee" />
 						<Picker.Item label="RoofTop" value="RoofTop" />
 					</Picker>

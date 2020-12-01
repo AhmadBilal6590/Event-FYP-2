@@ -47,7 +47,7 @@ const Login = (props) => {
 
 				instance.post("/signin", { email: email, password: password })
 					.then((res, error) => {
-						console.log(res.data.user.role)
+						console.log(res.data.user.phone)
 						if (res.status == 200) {
 							if (res.data.user.role == "admin") {
 								Alert.alert("admin")
@@ -55,11 +55,11 @@ const Login = (props) => {
 							if (res.data.user.role == "user") {
 
 								let user_id = res.data.user._id
-								console.log(user_id)
-								props.navigation.navigate("DashBoardMain", { user_id: user_id })
+
+								props.navigation.navigate("DashBoardMain", { user_id: user_id, email: res.data.user.email, password: res.data.user.password, firstName: res.data.user.firstName, lastName: res.data.user.lastName, fullName: res.data.user.fullName, phone: res.data.user.phone })
 							}
 							if (res.data.user.role == "vendor") {
-								Alert.alert("vendor")
+								props.navigation.navigate("VendorDrawer", { user_id: res.data.user._id, email: res.data.user.email })
 							}
 						}
 
