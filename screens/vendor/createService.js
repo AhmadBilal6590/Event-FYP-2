@@ -7,9 +7,14 @@ import {
 	TouchableOpacity,
 	Picker
 } from "react-native";
+import axios from 'react-native-axios'
+const instance = axios.create({
+	baseURL: "https://demo-ajmal.herokuapp.com/api"
+})
 
-const createService = ({ navigation }) => {
-	const [pickerValue, setPikerValue] = useState("");
+
+const createService = (props) => {
+	const [pickerValue, setPikerValue] = useState("Marquee");
 
 	const [venueName, setVenueName] = useState("");
 	const [personPrice, setPersonPrice] = useState("");
@@ -26,6 +31,7 @@ const createService = ({ navigation }) => {
 	const venueValidator = () => {
 		if (venueName == "") {
 			setVenueNameError("venue field can't be empty");
+
 		} else {
 			setVenueNameError("");
 		}
@@ -54,7 +60,7 @@ const createService = ({ navigation }) => {
 		}
 	};
 
-	const buttonValidator = () => {
+	const buttonValidator = async () => {
 		if (
 			venueName == "" ||
 			location == "" ||
@@ -64,7 +70,22 @@ const createService = ({ navigation }) => {
 			alert("you have to fill the fields first");
 		} else {
 			// navigation.navigate("CreateVendor")
-			alert("Navigated");
+			try {
+				const res = await instance.post("/service/create", { email: props.route.params.props.route.params.email, vendor_id: props.route.params.props.route.params.user_id, venueName: venueName, serviceName: pickerValue, perPersonCharge: personPrice, phone: phoneNumber, address: location })
+
+				if (res.status === 200) {
+
+					alert("successfullyBooked")
+					props.navigation.openDrawer();
+
+				}
+				if (res.status === 400) {
+					alert("statusErrorBy400")
+				}
+			}
+			catch (error) {
+				alert(error)
+			}
 		}
 	};
 
@@ -88,9 +109,9 @@ const createService = ({ navigation }) => {
 				onValueChange={(itemValue, itemIndex) => setPikerValue(itemValue)}
 			>
 				{/* <Picker.Item label="Venue Type" /> */}
-				<Picker.Item label="Marquee" value="bilal" />
-				<Picker.Item label="Rooftop" value="haider" />
-				<Picker.Item label="Banqueet Hall" value="haider" />
+				<Picker.Item label="Marquee" value="Marquee" />
+				<Picker.Item label="Rooftop" value="Rooftop" />
+				<Picker.Item label="Banqueet Hall" value="Banqueet Hall" />
 			</Picker>
 
 			<TextInput

@@ -43,21 +43,23 @@ const Login = (props) => {
 			else {
 				setRequiredpassword("")
 				setRequiredEmail("")
-				console.log(email)
-				console.log(password)
+
 
 				instance.post("/signin", { email: email, password: password })
 					.then((res, error) => {
-						console.log(res.data.user.role)
+						console.log(res.data.user.phone)
 						if (res.status == 200) {
 							if (res.data.user.role == "admin") {
 								Alert.alert("admin")
 							}
 							if (res.data.user.role == "user") {
-								props.navigation.navigate("DashBoardMain")
+
+								let user_id = res.data.user._id
+
+								props.navigation.navigate("DashBoardMain", { user_id: user_id, email: res.data.user.email, password: res.data.user.password, firstName: res.data.user.firstName, lastName: res.data.user.lastName, fullName: res.data.user.fullName, phone: res.data.user.phone })
 							}
 							if (res.data.user.role == "vendor") {
-								Alert.alert("vendor")
+								props.navigation.navigate("VendorDrawer", { user_id: res.data.user._id, email: res.data.user.email })
 							}
 						}
 
@@ -99,7 +101,7 @@ const Login = (props) => {
 			<View style={styles.btnContainer}>
 				<TouchableOpacity
 					style={styles.userBtn}
-					onPress={() => props.navigation.navigate("DashBoardMain")}
+					onPress={() => signIn()}
 				>
 					<Text style={styles.btnText}> Login</Text>
 				</TouchableOpacity>

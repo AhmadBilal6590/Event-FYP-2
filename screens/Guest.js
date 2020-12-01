@@ -16,6 +16,16 @@ import {
 } from "native-base";
 
 const Budget = (props) => {
+	let item = {
+		selectedValue: props.route.params.item.serviceName,
+		user_id: props.route.params.item.user_id,
+		perPerson: props.route.params.perPerson,
+		serviceId: props.route.params.serviceId,
+		vendorId: props.route.params.vendor_Id,
+		venueName: props.route.params.venueName,
+
+	}
+	console.log("ajmal", item)
 	let data = [];
 	const [selectedValue, setSelectedValue] = useState(data);
 	const [addText, setAddText] = useState("");
@@ -24,6 +34,7 @@ const Budget = (props) => {
 		let us = selectedValue.push(addText);
 
 		setAddText("");
+		console.log(props)
 
 	}
 	return (
@@ -69,7 +80,14 @@ const Budget = (props) => {
 					// onPress={() => {
 					// 	<MarqueeHallDetails />
 					// }}
-					onPress={() => { alert("ajaml") }}
+					onPress={
+						() => {
+
+							props.navigation.navigate("RoofTopHallDetails", { item, selectedValue })
+
+
+						}
+					}
 				>
 					<Text style={{ color: "white", padding: 12 }}>Next</Text>
 				</Button>

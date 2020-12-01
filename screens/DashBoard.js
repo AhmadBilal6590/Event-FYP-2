@@ -16,18 +16,11 @@ import {
 	Body,
 	Thumbnail
 } from "native-base";
+import { TouchableOpacity } from "react-native-gesture-handler";
+import { round } from "react-native-reanimated";
 
 const Dashboard = (props) => {
-	const [selectedValue, setSelectedValue] = useState("Banquet Halls");
-
-
-	/* onSelect(value){
-
-	this.props.navigation.navigate("SearchEvent")({
-	  selected:value
-
-	});
-  }*/
+	const [selectedValue, setSelectedValue] = useState("Banquet");
 
 	return (
 		<Container>
@@ -38,7 +31,7 @@ const Dashboard = (props) => {
 					</Button>
 				</Left>
 				<Body>
-					<Text style={styles.textStyles}>Dashboard</Text>
+					<Text style={styles.textStyles}>Venue</Text>
 				</Body>
 				<Right>
 					<Button
@@ -60,8 +53,8 @@ const Dashboard = (props) => {
 					}}
 				/>
 
-				<Text style={{ top: 35, fontSize: 13, left: 106 }}>
-					50 days left until wedding day
+				<Text style={{ top: 35, fontSize: 13, right: 25, textAlign: "center" }}>
+					Your Venue
 					</Text>
 
 				<Text style={{ fontWeight: "bold", fontSize: 18, top: 80, left: 83 }}>
@@ -78,24 +71,36 @@ const Dashboard = (props) => {
 						selectedValue={selectedValue}
 						onValueChange={(value, index) => setSelectedValue(value)}
 					>
-						<Picker.Item label="Banquet Halls" value="Banquet Halls" />
+						<Picker.Item label="Banquet" value="Banquet" />
 						<Picker.Item label="Marquee" value="Marquee" />
 						<Picker.Item label="RoofTop" value="RoofTop" />
 					</Picker>
 				</Form>
 
-				<Button
-					rounded
-					danger
-					style={{ left: 110, width: 180 }}
+				<TouchableOpacity
+
+					style={{
+						backgroundColor: "#F56F6F",
+						padding: 17,
+						width: "50%",
+						marginLeft: 90,
+						alignItems: "center",
+						borderRadius: 25,
+						borderWidth: 0,
+					}}
 					onPress={() => {
-						if (selectedValue === 'Marquee') { props.navigation.navigate("MarqueeHallList") }
-						if (selectedValue === "RoofTop") { props.navigation.navigate("RoofTopHallList") }
-						if (selectedValue == "Banquet Halls") { props.navigation.navigate("BanqueetHallList") }
+
+						let user_id = props.route.params.user_id;
+						console.log("as", user_id)
+						let item = {
+							selectedValue: selectedValue,
+							user_id: user_id
+						}
+						props.navigation.navigate("MarqueeHallList", { item })
 					}}
 				>
-					<Text style={{ paddingLeft: 65 }}>Search</Text>
-				</Button>
+					<Text style={{ left: 0 }}>Search</Text>
+				</TouchableOpacity>
 
 				<Text
 					style={{
@@ -134,31 +139,7 @@ const Dashboard = (props) => {
 				</View>
 			</Content>
 
-			<Footer>
-				<FooterTab style={{ padding: 2 }}>
-					<Button
-						onPress={() => props.navigation.navigate('DashBoardMain')}
-						vertical active vertical
-					>
-						<Icon vertical active name="apps" />
-						<Text>Dashboard</Text>
-
-					</Button>
-
-					<Button>
-						<Icon name="apps" />
-						<Text>Checklist</Text>
-					</Button>
-					<Button
-						onPress={() => props.navigation.navigate('Guest')}
-						vertical
-					>
-						<Icon name="apps" />
-						<Text>Guests</Text>
-					</Button>
-				</FooterTab>
-			</Footer>
-		</Container>
+		</Container >
 	);
 }
 
