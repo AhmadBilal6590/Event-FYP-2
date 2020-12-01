@@ -17,6 +17,7 @@ import Guest from "./screens/Guest";
 import UserProfileEdit from "./screens/UserProfileEdit";
 import CreateService from "./screens/vendor/createService";
 import VendorDrawer from "./screens/vendor/vendorDrawer";
+import AdminDrawer from "./screens/admin/adminDrawer";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -26,7 +27,7 @@ export default function App() {
 				initialRouteName="Login"
 				screenOptions={{ headerShown: false }}
 			>
-				 <Stack.Screen
+				<Stack.Screen
 					name="CreateService"
 					component={CreateService}
 				></Stack.Screen>
@@ -34,6 +35,8 @@ export default function App() {
 					name="VendorDrawer"
 					component={VendorDrawer}
 				></Stack.Screen>
+
+				<Stack.Screen name="AdminDrawer" component={AdminDrawer}></Stack.Screen>
 
 				<Stack.Screen name="Login" component={Login}></Stack.Screen>
 
