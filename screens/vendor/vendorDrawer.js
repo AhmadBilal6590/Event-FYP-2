@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { useWindowDimensions } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import CreateVendor from "./createVendor";
-import CreateService from "./createService";
+import VendorCheckList from "./vendorCheckList";
 const Drawer = createDrawerNavigator();
 
 const vendorDrawer = () => {
@@ -10,7 +10,7 @@ const vendorDrawer = () => {
 	return (
 		<Drawer.Navigator>
             <Drawer.Screen name="Home" component={CreateVendor} />
-			<Drawer.Screen name="CreateService" component={CreateService} />
+			<Drawer.Screen name="CheckList" component={VendorCheckList}/>
 
 		</Drawer.Navigator>
 	);
