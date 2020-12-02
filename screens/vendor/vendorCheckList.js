@@ -22,46 +22,85 @@ import {
 	Content,
 	Icon
 } from "native-base";
+import axios from 'react-native-axios';
+const instance = axios.create({
+	baseURL: "https://demo-ajmal.herokuapp.com/api"
+})
 
-const vendorCheckList = ({ navigation }) => {
+const vendorCheckList = (props) => {
+	let _id = props.route.params.route.params.user_id
+	let vendorChecklist = []
+	let vendorCheck = []
+
+	React.useEffect(() => {
+		async function fetchData() {
+
+			const res = await instance.post('/getAllbook/services', { vendor_id: _id })
+			if (res.status == 200) {
+				let data = res.data.message;
+
+				data.map((text, index) => {
+
+					vendorChecklist.push({
+						venueName: text.venueName,
+						venueType: text.serviceName,
+						perPerson: text.perPerson,
+						totalGuest: text.totalGuest,
+						CustomerName: text.user_id.fullName,
+						CustomerPhoneNumber: text.user_id.phone,
+						TotaltBudget: text.perPerson * text.totalGuest
+					})
+
+				})
+				setListData(vendorChecklist)
+				setLoading(true)
+			}
+
+
+		}
+		fetchData();
+
+	}, []);
+
+	React.useEffect(() => {
+		async function fetchList() {
+
+			const res = await instance.post('/service/get', { vendor_id: _id })
+			if (res.status == 200) {
+				let data = res.data.message;
+				console.log(data)
+				data.map((text, index) => {
+
+					vendorCheck.push({
+						phone: text.phone,
+						serviceName: text.serviceName,
+						perPersonCharge: text.perPersonCharge,
+						address: text.address,
+						venueName: text.venueName
+					})
+					console.log("ajmal", vendorCheck)
+				})
+				setListService(vendorCheck)
+				setLoading(true)
+			}
+
+
+		}
+		fetchList()
+
+	}, []);
+
 	const [activeBookedServices, setActiveBookedServices] = useState(true);
 	const [activeServices, setActiveServices] = useState(false);
-	const [listData, setListData] = useState([
-		{
-			CustomerName: "ahmad",
-			phoneNumber: "03422839515",
-			venueName: "Ajmal Marquee",
-			VenueType: "Marquee",
-			PerPrice: "1000",
-			Location: "lahore"
-		},
+	const [loading, setLoading] = useState(false);
+	const [listData, setListData] = useState(
 
-		{
-			CustomerName: "ahmad",
-			phoneNumber: "03422839515",
-			venueName: "Ajmal Marquee",
-			VenueType: "Marquee",
-			PerPrice: "1000",
-			Location: "lahore"
-		},
-		{
-			CustomerName: "ahmad",
-			phoneNumber: "03422839515",
-			venueName: "Ajmal Marquee",
-			VenueType: "Marquee",
-			PerPrice: "1000",
-			Location: "lahore"
-		},
+		vendorChecklist
+	);
+	const [listService, setListService] = useState(
 
-		{
-			CustomerName: "ahmad",
-			phoneNumber: "03422839515",
-			venueName: "Ajmal Marquee",
-			VenueType: "Marquee",
-			PerPrice: "1000",
-			Location: "lahore"
-		}
-	]);
+		vendorCheck
+	);
 
 	const tabHandler = type => {
 		if (type == "Booked Services") {
@@ -77,7 +116,7 @@ const vendorCheckList = ({ navigation }) => {
 		<Container>
 			<Header hasSegment>
 				<Left>
-					<Button transparent onPress={() => navigation.goBack()}>
+					<Button transparent onPress={() => props.navigation.goBack()}>
 						<Icon name="arrow-back" />
 					</Button>
 				</Left>
@@ -108,29 +147,35 @@ const vendorCheckList = ({ navigation }) => {
 							<Text style={styles.textTitle}>Booked Services</Text>
 						</View>
 						<View style={{ flex: 1 }}>
+
 							<FlatList
 								data={listData}
+								keyExtractor={(item, index) => item.id}
 								renderItem={({ item }) => (
-									<Card>
+
+									<Card id={item.id} >
 										<CardItem>
 											<Body>
 												<Text style={styles.servicesText}>
 													Customer Name : {item.CustomerName}
 												</Text>
 												<Text style={styles.servicesText}>
-													Customer Phone Number : {item.phoneNumber}
+													Customer Phone Number : {item.CustomerPhoneNumber}
 												</Text>
 												<Text style={styles.servicesText}>
 													Venue Name : {item.venueName}
 												</Text>
 												<Text style={styles.servicesText}>
-													Venue Type : {item.VenueType}
+													Venue Type : {item.venueType}
 												</Text>
 												<Text style={styles.servicesText}>
-													Per Price : {item.PerPrice}
+													Per Price : {item.perPerson}
 												</Text>
 												<Text style={styles.servicesText}>
-													Location : {item.Location}
+													TotalGuest : {item.totalGuest}
+												</Text>
+												<Text style={styles.servicesText}>
+													TotaltBudget : {item.TotaltBudget}
 												</Text>
 											</Body>
 										</CardItem>
@@ -149,29 +194,27 @@ const vendorCheckList = ({ navigation }) => {
 						</View>
 						<View style={{ flex: 1 }}>
 							<FlatList
-								data={listData}
+								data={listService}
 								renderItem={({ item }) => (
 									<Card>
 										<CardItem>
 											<Body>
 												<Text style={styles.servicesText}>
-													Customer Name : {item.CustomerName}
+													address : {item.address}
 												</Text>
 												<Text style={styles.servicesText}>
-													Customer Phone Number : {item.phoneNumber}
+													phone : {item.phone}
 												</Text>
 												<Text style={styles.servicesText}>
 													Venue Name : {item.venueName}
 												</Text>
 												<Text style={styles.servicesText}>
-													Venue Type : {item.VenueType}
+													Venue Type : {item.serviceName}
 												</Text>
 												<Text style={styles.servicesText}>
-													Per Price : {item.PerPrice}
+													Per Price : {item.perPersonCharge}
 												</Text>
-												<Text style={styles.servicesText}>
-													Location : {item.Location}
-												</Text>
+
 											</Body>
 										</CardItem>
 									</Card>

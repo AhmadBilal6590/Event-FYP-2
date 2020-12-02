@@ -67,7 +67,7 @@ const adminHome = ({ navigation }) => {
 								}}
 							/>
 							<Body>
-								<Text>Vendor List</Text>
+								<Text>WelcomeAdmin</Text>
 							</Body>
 						</Left>
 					</CardItem>
@@ -87,13 +87,7 @@ const adminHome = ({ navigation }) => {
 							</Button>
 						</Left>
 						<Body>
-							<Button
-								transparent
-								// onPress={() => navigation.navigate('CreateService')}
-							>
-								<Icon active name="chevron-down" size={19} />
-								<Text style={{marginRight:25}}>Create</Text>
-							</Button>
+
 						</Body>
 						<Right>
 							<Text></Text>

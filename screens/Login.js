@@ -47,10 +47,11 @@ const Login = (props) => {
 
 				instance.post("/signin", { email: email, password: password })
 					.then((res, error) => {
-						console.log(res.data.user.phone)
+						console.log(res.data)
 						if (res.status == 200) {
 							if (res.data.user.role == "admin") {
-								Alert.alert("admin")
+								let user_id = res.data.user._id
+								props.navigation.navigate("AdminDrawer", { user_id: user_id, email: res.data.user.email, password: res.data.user.password, firstName: res.data.user.firstName, lastName: res.data.user.lastName, fullName: res.data.user.fullName, phone: res.data.user.phone })
 							}
 							if (res.data.user.role == "user") {
 
@@ -59,7 +60,8 @@ const Login = (props) => {
 								props.navigation.navigate("DashBoardMain", { user_id: user_id, email: res.data.user.email, password: res.data.user.password, firstName: res.data.user.firstName, lastName: res.data.user.lastName, fullName: res.data.user.fullName, phone: res.data.user.phone })
 							}
 							if (res.data.user.role == "vendor") {
-								props.navigation.navigate("VendorDrawer", { user_id: res.data.user._id, email: res.data.user.email })
+								let user_id = res.data.user._id
+								props.navigation.navigate("VendorDrawer", { user_id: user_id, email: res.data.user.email, password: res.data.user.password, firstName: res.data.user.firstName, lastName: res.data.user.lastName, fullName: res.data.user.fullName, phone: res.data.user.phone })
 							}
 						}
 
@@ -107,23 +109,7 @@ const Login = (props) => {
 				</TouchableOpacity>
 			</View>
 
-			<View style={styles.btnContainer}>
-				<TouchableOpacity
-					style={styles.userBtnV}
-					onPress={() => props.navigation.navigate("VendorDrawer")}
-				>
-					<Text style={styles.btnText}> Login as a Vendor</Text>
-				</TouchableOpacity>
-			</View>
 
-			<View style={styles.btnContainer}>
-				<TouchableOpacity
-					style={styles.userBtnV}
-					onPress={() => props.navigation.navigate("AdminDrawer")}
-				>
-					<Text style={styles.btnText}> Login as a admin</Text>
-				</TouchableOpacity>
-			</View>
 
 
 			<TouchableOpacity

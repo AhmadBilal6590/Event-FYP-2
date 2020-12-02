@@ -162,7 +162,11 @@ const createService = (props) => {
 			<View style={styles.btnContainer}>
 				<TouchableOpacity
 					style={styles.userBtn}
-					onPress={() => buttonValidator()}
+					onPress={() =>
+
+						buttonValidator()
+
+					}
 				>
 					<Text style={styles.btnText}>Create</Text>
 				</TouchableOpacity>

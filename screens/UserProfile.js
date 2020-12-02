@@ -81,6 +81,7 @@ const UserProfile = (props) => {
 			})
 		if (res.status == 201) {
 			alert("updatedSuccessfully")
+			props.navigation.popToTop()
 		}
 	}
 

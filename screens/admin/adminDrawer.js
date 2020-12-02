@@ -6,15 +6,15 @@ import Profile from './adminProfile';
 import CheckList from './adminCheckList';
 // import EditProfile from './adminProfileEdit';
 
-const drawer=createDrawerNavigator();
+const drawer = createDrawerNavigator();
 
-const adminDrawer=()=>{
+const adminDrawer = (props) => {
     // const dimensions = useWindowDimensions();
-    return(
+    return (
         <drawer.Navigator>
-            <drawer.Screen  name="Home" component={Home}/>
-            <drawer.Screen  name="Profile" component={Profile}/>
-            <drawer.Screen  name="CheckList" component={CheckList}/>
+            <drawer.Screen name="Home" component={Home} />
+            <drawer.Screen name="Profile" component={Profile} initialParams={{ props }} />
+            <drawer.Screen name="CheckList" component={CheckList} />
             {/* <drawer.Screen  name="EditProfile" component={EditProfile}/> */}
 
 
