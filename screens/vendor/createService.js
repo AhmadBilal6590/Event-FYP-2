@@ -111,8 +111,8 @@ const createService = (props) => {
 			>
 				{/* <Picker.Item label="Venue Type" /> */}
 				<Picker.Item label="Marquee" value="Marquee" />
-				<Picker.Item label="Rooftop" value="Rooftop" />
-				<Picker.Item label="Banqueet Hall" value="Banqueet Hall" />
+				<Picker.Item label="RoofTop" value="RoofTop" />
+				<Picker.Item label="Banquet" value="Banquet" />
 			</Picker>
 
 			<TextInput

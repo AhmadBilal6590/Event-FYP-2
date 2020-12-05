@@ -12,11 +12,11 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = (props) => {
 	const dimensions = useWindowDimensions(props);
 	return (
-		<Drawer.Navigator >
+		<Drawer.Navigator>
 			<Drawer.Screen name="Home" component={Home} initialParams={{ props }} />
 			<Drawer.Screen name="Planning tools" component={PlanningTools} />
 			<Drawer.Screen name="User Profile" component={UserProfile} initialParams={{ props }} />
-			<Drawer.Screen name="CheckList" component={UserCheckList} />
+			<Drawer.Screen name="CheckList" component={UserCheckList} initialParams={{ props }} />
 		</Drawer.Navigator>
 	);
 };
