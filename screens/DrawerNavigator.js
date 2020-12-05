@@ -16,7 +16,7 @@ const DrawerNavigator = (props) => {
 			<Drawer.Screen name="Home" component={Home} initialParams={{ props }} />
 			<Drawer.Screen name="Planning tools" component={PlanningTools} />
 			<Drawer.Screen name="UserProfile" component={UserProfile} initialParams={{ props }} />
-			<Drawer.Screen name="CheckList" component={UserCheckList} />
+			<Drawer.Screen name="CheckList" component={UserCheckList} initialParams={{ props }} />
 		</Drawer.Navigator>
 	);
 };
