@@ -44,7 +44,7 @@ export default class MarqueeHallDetails extends Component {
 						</Button>
 					</Left>
 					<Body>
-						<Text style={styles.textStyles}>Details{console.log(this.props)}</Text>
+						<Text style={styles.textStyles}>Details</Text>
 					</Body>
 
 					<Right />

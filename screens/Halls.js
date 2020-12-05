@@ -25,13 +25,13 @@ const MarqueeHallList = (props) => {
 	let item={
 		serviceName:props.route.params.item.selectedValue,
 		user_id:props.route.params.item.user_id,
-		
+
 	}
-	
+
 	React.useEffect(() => {
 		async function fetchData() {
 			const res = await instance.post('/service/getall')
-			console.log(props.route.params.item.selectedValue)
+			// console.log(props.route.params.item.selectedValue)
 			setRes(res.data.message)
 
 		}
@@ -69,39 +69,39 @@ const MarqueeHallList = (props) => {
 				>
 					We provide best ways to create and manage your events, You can
 					instantly jump to bookings from home now.
-					
+
 				</Text>
 				{res.map((text, index) => {
-                        
+
 						if (text.serviceName == props.route.params.item.selectedValue) {
 							return (
 								<Card>
 									<CardItem>
 										<Left>
-	
+
 											{props.route.params.item.selectedValue === "Marquee" ?
 												<Thumbnail
-	
+
 													source={{
-	
+
 														uri:
 															"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
 													}}
 												/> : null}
 											{props.route.params.item.selectedValue === "Banquet" ?
 												<Thumbnail
-	
+
 													source={{
-	
+
 														uri:
 															"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
 													}}
 												/> : null}
 											{props.route.params.selectedValue === "RoofTop" ?
 												<Thumbnail
-	
+
 													source={{
-	
+
 														uri:
 															"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
 													}}
@@ -142,13 +142,13 @@ const MarqueeHallList = (props) => {
 										</Button>
 									</Left>
 									<Body>
-								
-									
-									
-							
-									
-									
-									
+
+
+
+
+
+
+
 										{props.route.params.item.selectedValue ?
 											<Button
 												transparent
@@ -160,7 +160,7 @@ const MarqueeHallList = (props) => {
 											</Button>
 											: null}
 
-										
+
 
 									</Body>
 									<Right>

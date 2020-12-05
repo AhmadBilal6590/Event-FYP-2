@@ -70,7 +70,7 @@ const adminCheckList = (props) => {
 			const res = await instance.post("/service/getAllServices")
 			if (res.status == 200) {
 				let data = res.data.message;
-				console.log(data)
+				// console.log(data)
 				data.map((text, index) => {
 
 					vendorCheck.push({
@@ -81,7 +81,7 @@ const adminCheckList = (props) => {
 						address: text.address,
 						venueName: text.venueName
 					})
-					console.log("ajmal", vendorCheck)
+					// console.log("ajmal", vendorCheck)
 				})
 				setListService(vendorCheck)
 				setLoading(false)

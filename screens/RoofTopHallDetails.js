@@ -40,11 +40,11 @@ const RoofTopHallDetails = (props) => {
 		let venueName=props.route.params.item.venueName;
 		let selectedValue=props.route.params.item.selectedValue;
 		let guest= props.route.params.selectedValue;
-	
+
 		let perPerson=props.route.params.item.perPerson;
 		let date=chosenDate.toString().substr(4, 12);
 		let day=Day;
-		console.log("ajmal",date)
+		// console.log("ajmal",date)
 		let item={
 			user_id:user_id,
 			service_id:service_id,
@@ -60,22 +60,22 @@ const RoofTopHallDetails = (props) => {
 		}
 		try{
 			const res=	await instance.post("/book/services",item)
-	
+
 			if (res.status===200) {
-				alert("successfullyBooked")
-				
+				alert("successfully Booked")
+
 			}
 			if(res.status===400)
 			{
-				alert("statusErrorBy400")
+				alert("status Error By 400")
 			}
 		}
 		catch(error){
              alert(error)
 		}
-	
 
-			
+
+
 	}
 	return (
 		<Container>
@@ -85,11 +85,9 @@ const RoofTopHallDetails = (props) => {
 						<Icon name="keyboard-backspace" size={25} />
 					</Button>
 				</Left>
-				<Body>
+				<Body style={{marginLeft:100}}>
 					<Text style={styles.textStyles}>Details</Text>
 				</Body>
-
-				<Right />
 				<Right>
 					<Button transparent onPress={() => props.navigation.popToTop()}>
 						<Icon name="exit-to-app" size={25} />
@@ -116,13 +114,14 @@ const RoofTopHallDetails = (props) => {
 								We will provide you the best Services for the event, We
 								provide best quality of Event management and allow external
 								decorators for your comfort.
-								
+
 							</Text>
 						</Body>
 					</CardItem>
 
 
-					<Form style={{ marginTop: 100, marginBottom: 20, left: 120 }}>
+					<Form style={{ marginTop: 30, marginBottom: 20, left: 20 }}>
+					<Text>Select number of Guest</Text>
 						<Picker
 							mode="dropdown"
 							iosHeader="Select your Venue Type"
@@ -133,6 +132,7 @@ const RoofTopHallDetails = (props) => {
 						selectedValue={totalGuest}
 						onValueChange={text=>{settotalGuest(text)}}
 						>
+
 							<Picker.Item label="100" value={100} />
 							<Picker.Item label="200" value={200} />
 							<Picker.Item label="300" value={300} />
@@ -142,7 +142,9 @@ const RoofTopHallDetails = (props) => {
 
 						</Picker>
 					</Form>
-					<Form style={{ marginTop: 20, marginBottom: 20, left: 120 }}>
+
+					<Form style={{ marginTop: 20, marginBottom: 20, left: 20 }}>
+					<Text>Select Day/Night</Text>
 						<Picker
 							mode="dropdown"
 							iosHeader="Select your Venue Type"
@@ -160,7 +162,7 @@ const RoofTopHallDetails = (props) => {
 						</Picker>
 					</Form>
 
-					<Form style={{ left: 130 }}>
+					<Form style={{ left: 23 }}>
 						<DatePicker
 							defaultDate={new Date(2020, 10, 4)}
 							minimumDate={new Date(2020, 4, 1)}
@@ -172,7 +174,7 @@ const RoofTopHallDetails = (props) => {
 							androidMode={"default"}
 							Icon={"arrow-down"}
 
-							placeHolderText="Click For Select Date"
+							placeHolderText="Click here to Select Date"
 							textStyle={{ color: "black" }}
 							placeHolderTextStyle={{ color: "red" }}
 							onDateChange={setDate}
@@ -184,21 +186,21 @@ const RoofTopHallDetails = (props) => {
 
 					</Form>
 					<Form style={{ marginTop: 25 }}>
-						<Textarea 
+						<Textarea
 						value={others}
 						onChangeText={(text)=>{setOthers(text)}}
-						rowSpan={5} 
+						rowSpan={5}
 						bordered placeholder="Other" />
 					</Form>
 					<View style={{ marginTop: 50 }}>
 						<Button
 							block
 							success
-							onPress={() => 
-								
+							onPress={() =>
+
 									{
 										booked()
-								
+
 						}}
 						>
 							<Text style={{}}>Book Now</Text>
@@ -246,10 +248,9 @@ const RoofTopHallDetails = (props) => {
 
 }
 const styles = StyleSheet.create({
-	// textStyles: {
-	// 	paddingLeft: "55%",
-	// 	fontSize: 20,
-	// 	color: "white"
-	// }
+	textStyles: {
+		fontSize: 20,
+		color: "white"
+	}
 });
 export default RoofTopHallDetails

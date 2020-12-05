@@ -43,7 +43,7 @@ const adminProfile = (props) => {
 
 		instance.post("/signin", { email: email, password: password })
 			.then((res, error) => {
-				console.log(res.data.user.phone)
+				// console.log(res.data.user.phone)
 				if (res.status == 200) {
 					setfullName(res.data.user.fullName);
 					setfirstName(res.data.user.firstName);
@@ -51,7 +51,7 @@ const adminProfile = (props) => {
 					setpassword(res.data.user.password);
 					setupdatedEmail(res.data.user.email);
 					setphone(res.data.user.phone);
-					console.log(updatedfullName, updatedfirstName, updatedEmail, updatedPhone)
+					// console.log(updatedfullName, updatedfirstName, updatedEmail, updatedPhone)
 
 				}
 
@@ -67,9 +67,9 @@ const adminProfile = (props) => {
 	const updated = async () => {
 
 		const f = updatedfirstName + " " + updatedlastName
-		console.log(f)
+		// console.log(f)
 		setfullName(f);
-		console.log("phone", updatedPhone, updatedEmail, updatedPassword)
+		// console.log("phone", updatedPhone, updatedEmail, updatedPassword)
 		const res = await instance.post('update',
 			{
 				_id: _id,
@@ -112,7 +112,7 @@ const adminProfile = (props) => {
 					color="purple"
 
 					onPress={() => {
-						console.log(props)
+						// console.log(props)
 						setLoading(true)
 
 					}}
@@ -165,39 +165,6 @@ const adminProfile = (props) => {
 					<View style={styles.divider}>
 						<Divider />
 					</View>
-
-					{/* <View style={styles.menuWrapper}>
-				<TouchableRipple onPress={() => { }}>
-					<View style={styles.menuItem}>
-						<Icon name="heart-outline" color="black" size={25} />
-						<Text style={styles.menuItemText}>Your Favorites</Text>
-					</View>
-				</TouchableRipple>
-				<TouchableRipple onPress={() => { }}>
-					<View style={styles.menuItem}>
-						<Icon name="cash" color="black" size={25} />
-						<Text style={styles.menuItemText}>Payment</Text>
-					</View>
-				</TouchableRipple>
-				<TouchableRipple>
-					<View style={styles.menuItem}>
-						<Icon name="share-outline" color="black" size={25} />
-						<Text style={styles.menuItemText}>Tell Your Friends</Text>
-					</View>
-				</TouchableRipple>
-				<TouchableRipple onPress={() => { }}>
-					<View style={styles.menuItem}>
-						<Icon name="account-check-outline" color="black" size={25} />
-						<Text style={styles.menuItemText}>Support</Text>
-					</View>
-				</TouchableRipple>
-				<TouchableRipple onPress={() => { }}>
-					<View style={styles.menuItem}>
-						<Icon name="settings-outline" color="black" size={25} />
-						<Text style={styles.menuItemText}>Settings</Text>
-					</View>
-				</TouchableRipple>
-			</View> */}
 				</View>
 
 			</SafeAreaView>

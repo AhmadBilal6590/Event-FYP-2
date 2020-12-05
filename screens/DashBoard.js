@@ -53,7 +53,7 @@ const Dashboard = (props) => {
 					}}
 				/>
 
-				<Text style={{ top: 35, fontSize: 13, right: 25, textAlign: "center" }}>
+				<Text style={{ top: 35, fontSize: 13,left:10, textAlign: "center" }}>
 					Your Venue
 					</Text>
 
@@ -91,7 +91,7 @@ const Dashboard = (props) => {
 					onPress={() => {
 
 						let user_id = props.route.params.user_id;
-						console.log("as", user_id)
+						// console.log("as", user_id)
 						let item = {
 							selectedValue: selectedValue,
 							user_id: user_id
@@ -146,7 +146,7 @@ const Dashboard = (props) => {
 
 const styles = StyleSheet.create({
 	textStyles: {
-		paddingLeft: "30%",
+		paddingLeft: "60%",
 		fontSize: 20,
 		color: "white"
 	}

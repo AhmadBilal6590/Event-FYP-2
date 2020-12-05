@@ -67,7 +67,7 @@ const adminHome = ({ navigation }) => {
 								}}
 							/>
 							<Body>
-								<Text>WelcomeAdmin</Text>
+								<Text>Welcome to Admin</Text>
 							</Body>
 						</Left>
 					</CardItem>
@@ -81,17 +81,14 @@ const adminHome = ({ navigation }) => {
 						/>
 					</CardItem>
 					<CardItem>
-						<Left>
-							<Button transparent>
-								<Text></Text>
-							</Button>
-						</Left>
-						<Body>
 
+					<Body style={{marginLeft:30}}>
+					<Button transparent
+					onPress={()=>navigation.openDrawer()}>
+						<Text>Check your booked services from drawer</Text>
+						</Button>
 						</Body>
-						<Right>
-							<Text></Text>
-						</Right>
+
 					</CardItem>
 				</Card>
 

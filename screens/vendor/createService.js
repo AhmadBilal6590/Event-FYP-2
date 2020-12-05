@@ -15,7 +15,7 @@ const instance = axios.create({
 
 const createService = (props) => {
 	const [pickerValue, setPikerValue] = useState("Marquee");
-	console.log("ajmal", props)
+	// console.log("ajmal", props)
 	const [venueName, setVenueName] = useState("");
 	const [personPrice, setPersonPrice] = useState("");
 	const [phoneNumber, setPhoneNumber] = useState("");
@@ -71,17 +71,17 @@ const createService = (props) => {
 		} else {
 			// navigation.navigate("CreateVendor")
 			try {
-				console.log(props.route.params.route.params.route.params.email)
+				// console.log(props.route.params.route.params.route.params.email)
 				const res = await instance.post("/service/create", { email: props.route.params.route.params.route.params.email, vendor_id: props.route.params.route.params.route.params.user_id, venueName: venueName, serviceName: pickerValue, perPersonCharge: personPrice, phone: phoneNumber, address: location })
 
 				if (res.status === 200) {
 
-					alert("successfullyBooked")
+					alert("successfully Booked")
 					props.navigation.navigate("VendorDrawer");
 
 				}
 				if (res.status === 400) {
-					alert("statusErrorBy400")
+					alert("status Error By 400")
 				}
 			}
 			catch (error) {

@@ -24,7 +24,7 @@ const instance = axios.create({
 })
 const vendorProfile = (props) => {
 
-    console.log("gfffffffffffffh", props)
+    // console.log("gfffffffffffffh", props)
     const _id = props.route.params.route.params.user_id;
     const email = props.route.params.route.params.email;
     // const firstName = props.route.params.props.route.params.firstName;
@@ -44,7 +44,7 @@ const vendorProfile = (props) => {
 
         instance.post("/signin", { email: email, password: password })
             .then((res, error) => {
-                console.log(res.data.user.phone)
+                // console.log(res.data.user.phone)
                 if (res.status == 200) {
                     setfullName(res.data.user.fullName);
                     setfirstName(res.data.user.firstName);
@@ -52,8 +52,7 @@ const vendorProfile = (props) => {
                     setpassword(res.data.user.password);
                     setupdatedEmail(res.data.user.email);
                     setphone(res.data.user.phone);
-                    console.log(updatedfullName, updatedfirstName, updatedEmail, updatedPhone)
-
+                    // console.log(updatedfullName, updatedfirstName, updatedEmail, updatedPhone)
                 }
 
 
@@ -68,9 +67,9 @@ const vendorProfile = (props) => {
     const updated = async () => {
 
         const f = updatedfirstName + " " + updatedlastName
-        console.log(f)
+        // console.log(f)
         setfullName(f);
-        console.log("phone", updatedPhone, updatedEmail, updatedPassword)
+        // console.log("phone", updatedPhone, updatedEmail, updatedPassword)
         const res = await instance.post('update',
             {
                 _id: _id,
@@ -113,7 +112,7 @@ const vendorProfile = (props) => {
                     color="purple"
 
                     onPress={() => {
-                        console.log(props)
+                        // console.log(props)
                         setLoading(true)
 
                     }}

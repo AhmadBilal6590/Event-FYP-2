@@ -68,7 +68,7 @@ const vendorCheckList = (props) => {
 			const res = await instance.post('/service/get', { vendor_id: _id })
 			if (res.status == 200) {
 				let data = res.data.message;
-				console.log(data)
+				// console.log(data)
 				data.map((text, index) => {
 
 					vendorCheck.push({
@@ -78,7 +78,7 @@ const vendorCheckList = (props) => {
 						address: text.address,
 						venueName: text.venueName
 					})
-					console.log("ajmal", vendorCheck)
+					// console.log("ajmal", vendorCheck)
 				})
 				setListService(vendorCheck)
 				setLoading(true)

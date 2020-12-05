@@ -15,17 +15,16 @@ import {
 	Segment
 } from "native-base";
 
-const Budget = (props) => {
+const Budget = props => {
 	let item = {
 		selectedValue: props.route.params.item.serviceName,
 		user_id: props.route.params.item.user_id,
 		perPerson: props.route.params.perPerson,
 		serviceId: props.route.params.serviceId,
 		vendorId: props.route.params.vendor_Id,
-		venueName: props.route.params.venueName,
-
-	}
-	console.log("ajmal", item)
+		venueName: props.route.params.venueName
+	};
+	// console.log("ajmal", item);
 	let data = [];
 	const [selectedValue, setSelectedValue] = useState(data);
 	const [addText, setAddText] = useState("");
@@ -34,13 +33,20 @@ const Budget = (props) => {
 		let us = selectedValue.push(addText);
 
 		setAddText("");
-		console.log(props)
-
-	}
+		// console.log(props);
+	};
 	return (
 		<Container>
-
-
+			<Header>
+				<Left>
+					<Button transparent onPress={() => props.navigation.goBack()}>
+						<Icon name="keyboard-backspace" size={25} />
+					</Button>
+				</Left>
+				<Body style={{marginLeft:20}}>
+					<Text style={styles.textStyles}>Add your guest</Text>
+				</Body>
+			</Header>
 			<Content padder>
 				<Item>
 					<Input
@@ -52,21 +58,20 @@ const Budget = (props) => {
 					<Button
 						style={{ marginRight: 12, padding: 10, width: 50 }}
 						onPress={() => {
-							addData()
+							addData();
 						}}
-					// onPress={()=>props.navigation.navigate('')}
+						// onPress={()=>props.navigation.navigate('')}
 					>
-						<Text style={{ color: "white" }} >Add</Text>
+						<Text style={{ color: "white" }}>Add</Text>
 					</Button>
-
 				</Item>
 
 				<FlatList
 					data={selectedValue}
 					renderItem={({ item }) => {
-						return <Text style={styles.itemStyle}>{item}</Text>
-
-					}} />
+						return <Text style={styles.itemStyle}>{item}</Text>;
+					}}
+				/>
 
 				<Button
 					style={{
@@ -80,14 +85,12 @@ const Budget = (props) => {
 					// onPress={() => {
 					// 	<MarqueeHallDetails />
 					// }}
-					onPress={
-						() => {
-
-							props.navigation.navigate("RoofTopHallDetails", { item, selectedValue })
-
-
-						}
-					}
+					onPress={() => {
+						props.navigation.navigate("RoofTopHallDetails", {
+							item,
+							selectedValue
+						});
+					}}
 				>
 					<Text style={{ color: "white", padding: 12 }}>Next</Text>
 				</Button>
@@ -134,9 +137,8 @@ const Budget = (props) => {
 export default Budget;
 
 const styles = StyleSheet.create({
-
 	itemStyle: {
-		width: '100%',
+		width: "100%",
 		height: 50,
 		paddingLeft: 7,
 		paddingRight: 5,
@@ -144,6 +146,10 @@ const styles = StyleSheet.create({
 		paddingTop: 12,
 		fontSize: 17,
 		borderBottomWidth: 1,
-		borderColor: "#c6c2c2",
+		borderColor: "#c6c2c2"
+	},
+	textStyles: {
+		fontSize: 20,
+		color: "white"
 	}
 });
