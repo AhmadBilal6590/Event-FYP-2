@@ -10,9 +10,12 @@ import {
 	Right,
 	Body,
 	Card,
+	Input,
+	Item,
 	CardItem,
 	Thumbnail
 } from "native-base";
+import { TextInput } from "react-native-paper";
 
 const Home = (props) => {
 	//  const [selectedValue, setSelectedValue] = useState("Select");
@@ -43,18 +46,18 @@ const Home = (props) => {
 				<Text
 					style={{
 						fontSize: 24,
+						textAlign:"center",
 						margin: 10,
-						paddingLeft: 20,
 						fontWeight: "bold"
 					}}
 				>
-					Welcome to Wedding Planner
+					Discover and book your dream wedding
 				</Text>
 				<Text
-					style={{ fontSize: 15, margin: 10, paddingLeft: 15, borderRadius: 5 }}
+					style={{ fontSize: 15, textAlign:"center", borderRadius: 5,fontStyle:"italic"}}
 				>
-					We provide best ways to create and manage your events, You can
-					instantly jump to bookings from home now.
+					Explore the best wedding suppliers in your area. Create your shortlist and when you’re ready, easily book and manage communications through Wedding Planner.
+					
 				</Text>
 
 				<Card>
@@ -73,10 +76,8 @@ const Home = (props) => {
 					</CardItem>
 					<CardItem cardBody>
 						<Image
-							source={{
-								uri:
-									"https://colorlib.com/wp/wp-content/uploads/sites/2/appointment-booking-wp-plugins.png"
-							}}
+							source={require('../assets/images/wediing.jpg')}
+
 							style={{ height: 200, width: null, flex: 1 }}
 						/>
 					</CardItem>
@@ -97,14 +98,58 @@ const Home = (props) => {
 									props.navigation.navigate("DashBoard", { user_id: user_id })
 								}}
 							>
+								<Text style={{width:130,color:"blue"}}>Find wedding Venue</Text>
 								<Icon active name="chevron-right" size={19} />
-								<Text>Click here to create</Text>
 							</Button>
 						</Body>
 						<Right>
 							<Text></Text>
 						</Right>
 					</CardItem>
+				</Card>
+				<Card>
+					
+					<Text 
+						style={{
+							fontSize: 24,
+							textAlign:"center",
+							margin: 10,
+							fontWeight: "bold"
+						}}
+					>
+						Plan your wedding from home and on the go.</Text>
+						<CardItem cardBody>
+						<Image
+							source={require('../assets/images/wediing2.jpg')}
+
+							style={{ height: 200, width: null, flex: 1 }}
+						/>
+					</CardItem>
+						<Text
+						style={{ fontSize: 15, textAlign:"center", borderRadius: 5,fontStyle:"italic"}}
+						>
+						With our free, intuitive and simple to use planning tools, you can keep up to date on your wedding admin wherever you are. From checklists to table plans and budget trackers, we've got you covered.
+						
+						</Text>
+				<Item
+				style={{ marginTop:30 }}
+				>
+					<Input
+					
+						placeholder="Enter your email"
+							/>
+
+					<Button
+						style={{ marginRight: 20,padding:10, width: 90 }}
+						onPress={() => {
+							alert("You have successfully subscribed")
+						}}
+						// onPress={()=>props.navigation.navigate('')}
+					>
+						<Text style={{ color: "white" }}>Subscribe</Text>
+					</Button>
+				</Item>
+						
 				</Card>
 
 
@@ -143,6 +188,7 @@ const Home = (props) => {
 						}}
 					/>
 				</View>
+				
 			</Content>
 		</Container>
 	);

@@ -17,7 +17,7 @@ import {
 const createVendor = (props) => {
 	//  const [selectedValue, setSelectedValue] = useState("Select");
 	return (
-		<Container>
+		<Container >
 			<Header>
 				<Left>
 					<Button transparent>
@@ -73,10 +73,8 @@ const createVendor = (props) => {
 					</CardItem>
 					<CardItem cardBody>
 						<Image
-							source={{
-								uri:
-									"https://colorlib.com/wp/wp-content/uploads/sites/2/appointment-booking-wp-plugins.png"
-							}}
+							source={require('../../assets/images/wediing.jpg')}
+
 							style={{ height: 200, width: null, flex: 1 }}
 						/>
 					</CardItem>

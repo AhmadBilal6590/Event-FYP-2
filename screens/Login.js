@@ -1,3 +1,4 @@
+import { Right } from "native-base";
 import React, { Component } from "react";
 import {
 	StyleSheet,
@@ -5,8 +6,10 @@ import {
 	View,
 	TextInput,
 	Button,
-	TouchableOpacity
+	TouchableOpacity,
+	ImageBackground
 } from "react-native";
+const image = require('../assets/images/login.jpg');
 import { Alert } from 'react-native'
 
 import axios from 'react-native-axios';
@@ -85,40 +88,42 @@ const Login = (props) => {
 
 	return (
 		<View style={styles.container}>
-			<Text style={styles.login}>Log in</Text>
+			<ImageBackground source={image} style={styles.image}>
+				<Text style={styles.login}>Log in</Text>
 
-			<TextInput style={styles.input} placeholder="Email"
-				value={email}
-				onChangeText={text => { setEmail(text) }}
-			/>
-			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}> {requiredEmail}</Text>
-			<TextInput
-				style={styles.input}
-				placeholder="Password"
-				secureTextEntry
-				value={password}
-				onChangeText={text => { setPassword(text) }}
-			/>
-			<Text style={{ marginTop: 0, fontSize: 10, color: "red" }}> {requiredpassword}</Text>
-			<View style={styles.btnContainer}>
+				<TextInput style={styles.input} placeholder="Email"
+					value={email}
+					onChangeText={text => { setEmail(text) }}
+				/>
+				<Text style={{ marginTop: 0, fontSize: 10, color: "red", textAlign: "center" }}> {requiredEmail}</Text>
+				<TextInput
+					style={styles.input}
+					placeholder="Password"
+					secureTextEntry
+					value={password}
+					onChangeText={text => { setPassword(text) }}
+				/>
+				<Text style={{ marginTop: 0, fontSize: 10, color: "red", textAlign: "center" }}> {requiredpassword}</Text>
+				<View style={styles.btnContainer}>
+					<TouchableOpacity
+						style={styles.userBtn}
+						onPress={() => signIn()}
+					>
+						<Text style={styles.btnText}> Login</Text>
+					</TouchableOpacity>
+				</View>
+
+
+
+
 				<TouchableOpacity
-					style={styles.userBtn}
-					onPress={() => signIn()}
+					// onPress={() => this.props.navigation.navigate("About")}
+
+					onPress={() => props.navigation.navigate("SignUp")}
 				>
-					<Text style={styles.btnText}> Login</Text>
+					<Text style={styles.su}>Do you have account? Create one</Text>
 				</TouchableOpacity>
-			</View>
-
-
-
-
-			<TouchableOpacity
-				// onPress={() => this.props.navigation.navigate("About")}
-
-				onPress={() => props.navigation.navigate("SignUp")}
-			>
-				<Text style={styles.su}>Do you have account? Create one</Text>
-			</TouchableOpacity>
+			</ImageBackground>
 		</View>
 	);
 
@@ -127,9 +132,19 @@ const Login = (props) => {
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: "white",
-		alignItems: "center",
-		justifyContent: "center"
+		justifyContent: "center",
+		flexDirection: "column"
+
+	},
+	image: {
+		flex: 1,
+		resizeMode: "cover",
+		justifyContent: "center",
+		position: "absolute",
+		left: 0,
+		right: 0,
+		top: 0,
+		bottom: 0
 	},
 
 	center: {
@@ -144,24 +159,33 @@ const styles = StyleSheet.create({
 	},
 
 	login: {
-		padding: 10,
-		margin: 10,
+		padding: 5,
+		margin: 5,
 		fontSize: 30,
-		color: "black"
+		color: "black",
+		textAlign: "center",
+		color: "white"
+
 	},
 
 	input: {
-		width: "90%",
+		width: "80%",
+		marginLeft: 30,
 		padding: 18,
 		backgroundColor: "#E4E4E4",
-		marginBottom: 5
+		borderWidth: 1,
+		borderStyle: 'solid',
+		fontSize: 15,
+		borderRadius: 25
+
 	},
 
 	su: {
-		color: "#F56F6F",
+		color: "white",
 		fontWeight: "500",
 		fontSize: 14,
 		padding: 12,
+		marginLeft: 70,
 		marginBottom: 10
 	},
 
@@ -175,11 +199,11 @@ const styles = StyleSheet.create({
 	userBtn: {
 		backgroundColor: "#F56F6F",
 		padding: 17,
-		width: "90%",
+		width: "80%",
 		alignItems: "center",
 		borderRadius: 25,
 		borderWidth: 0,
-		marginRight: 5,
+		marginRight: 20,
 		marginLeft: 5,
 		marginTop: 1
 	},
