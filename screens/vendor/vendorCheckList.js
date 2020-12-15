@@ -90,8 +90,8 @@ const vendorCheckList = (props) => {
 
 	}, []);
 
-	const [activeBookedServices, setActiveBookedServices] = useState(true);
-	const [activeServices, setActiveServices] = useState(false);
+	const [activeBookedServices, setActiveBookedServices] = useState(false);
+	const [activeServices, setActiveServices] = useState(true);
 	const [loading, setLoading] = useState(false);
 	const [listData, setListData] = useState(
 
@@ -156,27 +156,29 @@ const vendorCheckList = (props) => {
 									<Card id={item.id} >
 										<CardItem>
 											<Body>
-												<Text style={styles.servicesText}>
-													Customer Name : {item.CustomerName}
-												</Text>
-												<Text style={styles.servicesText}>
-													Customer Phone Number : {item.CustomerPhoneNumber}
-												</Text>
-												<Text style={styles.servicesText}>
-													Venue Name : {item.venueName}
-												</Text>
-												<Text style={styles.servicesText}>
-													Venue Type : {item.venueType}
-												</Text>
-												<Text style={styles.servicesText}>
-													Per Price : {item.perPerson}
-												</Text>
-												<Text style={styles.servicesText}>
-													TotalGuest : {item.totalGuest}
-												</Text>
-												<Text style={styles.servicesText}>
-													TotaltBudget : {item.TotaltBudget}
-												</Text>
+												<View>
+													<Text style={styles.servicesText}>
+														<Text style={styles.checklist}> Customer Name </Text>: {item.CustomerName}
+													</Text>
+													<Text style={styles.servicesText}>
+														<Text style={styles.checklist}> Phone Number </Text>  : {item.CustomerPhoneNumber}
+													</Text>
+													<Text style={styles.servicesText}>
+														<Text style={styles.checklist}> Venue Name </Text>: {item.venueName}
+													</Text>
+													<Text style={styles.servicesText}>
+														<Text style={styles.checklist}> Venue Type </Text>: {item.venueType}
+													</Text>
+													<Text style={styles.servicesText}>
+														<Text style={styles.checklist}> Per Price </Text>: {item.perPerson}
+													</Text>
+													<Text style={styles.servicesText}>
+														<Text style={styles.checklist}> Total Guest </Text>: {item.totalGuest}
+													</Text>
+													<Text style={styles.totalBudget}>
+														<Text style={styles.budget}> Total Budget </Text> : {item.TotaltBudget}
+													</Text>
+												</View>
 											</Body>
 										</CardItem>
 									</Card>
@@ -200,19 +202,19 @@ const vendorCheckList = (props) => {
 										<CardItem>
 											<Body>
 												<Text style={styles.servicesText}>
-													address : {item.address}
+													<Text style={styles.checklist}> Address  </Text>: {item.address}
 												</Text>
 												<Text style={styles.servicesText}>
-													phone : {item.phone}
+													<Text style={styles.checklist}>	Phone </Text> : {item.phone}
 												</Text>
 												<Text style={styles.servicesText}>
-													Venue Name : {item.venueName}
+													<Text style={styles.checklist}> Venue Name </Text>: {item.venueName}
 												</Text>
 												<Text style={styles.servicesText}>
-													Venue Type : {item.serviceName}
+													<Text style={styles.checklist}> Venue Type </Text> : {item.serviceName}
 												</Text>
 												<Text style={styles.servicesText}>
-													Per Price : {item.perPersonCharge}
+													<Text style={styles.checklist}>	Per Price </Text> : {item.perPersonCharge}
 												</Text>
 
 											</Body>
@@ -243,10 +245,27 @@ styles = StyleSheet.create({
 	},
 	textTitle: {
 		fontSize: 30,
+		fontWeight: "bold",
 		color: "black"
 	},
 	servicesText: {
 		padding: "3%"
+	},
+	checklist: {
+		fontSize: 15,
+		fontWeight: "bold"
+
+	},
+	totalBudget: {
+		textAlign: "center",
+		fontSize: 15,
+		marginTop: 10,
+		marginBottom: 10
+	},
+	budget: {
+		fontSize: 20,
+		fontWeight: "bold"
+
 	}
 });
 

@@ -73,20 +73,18 @@ const adminHome = ({ navigation }) => {
 					</CardItem>
 					<CardItem cardBody>
 						<Image
-							source={{
-								uri:
-									"https://colorlib.com/wp/wp-content/uploads/sites/2/appointment-booking-wp-plugins.png"
-							}}
+							source={require('../../assets/images/admin.jpg')}
+
 							style={{ height: 200, width: null, flex: 1 }}
 						/>
 					</CardItem>
 					<CardItem>
 
-					<Body style={{marginLeft:30}}>
-					<Button transparent
-					onPress={()=>navigation.openDrawer()}>
-						<Text>Check your booked services from drawer</Text>
-						</Button>
+						<Body style={{ marginLeft: 30 }}>
+							<Button transparent
+								onPress={() => navigation.openDrawer()}>
+								<Text>Check your booked services from drawer</Text>
+							</Button>
 						</Body>
 
 					</CardItem>

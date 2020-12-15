@@ -135,25 +135,25 @@ const userCheckList = (props) => {
 
 													<View>
 														<Text style={styles.servicesText}>
-															vendorName : {item.CustomerName}
+															<Text style={styles.checklist}> Vendor Name </Text>    : {item.CustomerName}
 														</Text>
 														<Text style={styles.servicesText}>
-															vendorName Phone Number : {item.CustomerPhoneNumber}
+															<Text style={styles.checklist}>	Phone Number </Text> : {item.CustomerPhoneNumber}
 														</Text>
 														<Text style={styles.servicesText}>
-															Venue Name : {item.venueName}
+															<Text style={styles.checklist}>	Venue Name </Text>     : {item.venueName}
 														</Text>
 														<Text style={styles.servicesText}>
-															Venue Type : {item.venueType}
+															<Text style={styles.checklist}>	Venue Type </Text>       : {item.venueType}
 														</Text>
 														<Text style={styles.servicesText}>
-															Per Price : {item.perPerson}
+															<Text style={styles.checklist}>	Per Price </Text>            : {item.perPerson}
 														</Text>
 														<Text style={styles.servicesText}>
-															TotalGuest : {item.totalGuest}
+															<Text style={styles.checklist}>	Total Guest </Text>       : {item.totalGuest}
 														</Text>
-														<Text style={styles.servicesText}>
-															TotaltBudget : {item.TotaltBudget}
+														<Text style={styles.totalBudget}>
+															<Text style={styles.budget}>Total Budget </Text>  :   {item.TotaltBudget}
 														</Text>
 													</View>
 												}
@@ -180,6 +180,7 @@ styles = StyleSheet.create({
 		backgroundColor: "white"
 	},
 
+
 	title: {
 		marginTop: "10%",
 		marginBottom: "10%",
@@ -187,10 +188,28 @@ styles = StyleSheet.create({
 	},
 	textTitle: {
 		fontSize: 30,
+		fontWeight: "bold",
 		color: "black"
 	},
 	servicesText: {
-		padding: "3%"
+		padding: "3%",
+		fontSize: 15
+	},
+	checklist: {
+		fontSize: 15,
+		fontWeight: "bold"
+
+	},
+	totalBudget: {
+		textAlign: "center",
+		fontSize: 15,
+		marginTop: 10,
+		marginBottom: 10
+	},
+	budget: {
+		fontSize: 20,
+		fontWeight: "bold"
+
 	}
 });
 

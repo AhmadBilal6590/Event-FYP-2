@@ -209,8 +209,8 @@ const PlanningTools = props => {
 					<View>
 						<Text
 							style={{
-								fontSize: 20,
-
+								fontSize: 25,
+								color: "darkslategrey",
 								fontWeight: "bold",
 								textAlign: "center"
 							}}
@@ -221,10 +221,9 @@ const PlanningTools = props => {
 							style={{
 								marginTop: 30,
 								fontSize: 20,
-         						fontWeight: "italic"
 							}}
 						>
-							Service Name : {selectedValue}
+							<Text style={styles.checklist}> Service Name </Text>          : {selectedValue}
 						</Text>
 						<Text
 							style={{
@@ -233,7 +232,7 @@ const PlanningTools = props => {
 								fontWeight: "italic"
 							}}
 						>
-							Per-Person Budget : {perp}
+							<Text style={styles.checklist}>	Per-Person Budget </Text> : {perp}
 						</Text>
 						<Text
 							style={{
@@ -242,139 +241,139 @@ const PlanningTools = props => {
 								fontWeight: "italic"
 							}}
 						>
-							Total Guest : {totaltGuest}
+							<Text style={styles.checklist}>	Total Guest </Text>             : {totaltGuest}
 						</Text>
-						<Text
-							style={{
-								marginTop: 50,
-								fontSize: 20,
-								textAlign: "right",
-								padding: 10,
-								fontWeight: "bold"
-							}}
-						>
-							Total Budget={perp * totaltGuest}
+						<Text style={styles.totalBudget}>
+							<Text style={styles.budget}>	Total Budget </Text> : {perp * totaltGuest}
 						</Text>
 					</View>
 				) : service ? (
 					selectedValue === "Marquee" ||
-					selectedValue === "RoofTop" ||
-					selectedValue === "Banquet" ? (
-						<Container>
-							<Content>
-								<Text
-									style={{
-										fontSize: 24,
-										margin: 10,
-										paddingLeft: 20,
-										fontWeight: "bold"
-									}}
-								>
-									Welcome to Wedding Planner
+						selectedValue === "RoofTop" ||
+						selectedValue === "Banquet" ? (
+							<Container>
+								<Content>
+									<Text
+										style={{
+											fontSize: 24,
+											margin: 10,
+											paddingLeft: 20,
+											textAlign: "center",
+											fontWeight: "bold",
+											color: "coral"
+										}}
+									>
+										See	Your Budget Services
 								</Text>
-								<Text
-									style={{
-										fontSize: 15,
-										margin: 10,
-										paddingLeft: 15,
-										borderRadius: 5
-									}}
-								>
-									We provide best ways to create and manage your events, You can
-									instantly jump to bookings from home now.
-								</Text>
-								{res.map((text, index) => {
-									if (
-										text.serviceName == selectedValue &&
-										text.perPersonCharge <= perPerson
-									) {
-										return (
-											<Card>
-												<CardItem>
-													<Left>
-														<Thumbnail
-															source={{
-																uri:
-																	"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
-															}}
-														/>
-														<Body>
-															<Text>Venue Type : {text.serviceName}</Text>
-															<Text style={{ marginTop: 20 }}>
-																Venue Name : {text.venueName}
-															</Text>
-														</Body>
-													</Left>
-												</CardItem>
-												<Button
-													style={{
-														backgroundColor: "#F56F6F",
-														margin: 10,
-														padding: 10,
-														left: 240,
-														width: 80,
-														borderRadius: 10
-													}}
-													onPress={() => {
-														setService(false);
-														setguestactive(true);
-														setplanactive(false);
-														setP(text.perPersonCharge);
-													}}
-												>
-													<Text style={{ color: "white", padding: 12 }}>
-														Next
-													</Text>
-												</Button>
-											</Card>
-										);
-									}
-								})}
 
-								<Text
-									style={{
-										fontSize: 18,
-										left: 135,
-										top: 20,
-										marginBottom: 10,
-										marginTop: 35
-									}}
-								>
-									Follow us on{" "}
-								</Text>
-								<View style={{ margin: 20, paddingLeft: 25 }}>
-									<Thumbnail
-										style={{ left: 40 }}
-										source={{
-											uri:
-												"https://www.iconfinder.com/data/icons/vector-brand-logos/40/Instagram-512.png"
+									{res.map((text, index) => {
+										if (
+											text.serviceName == selectedValue &&
+											text.perPersonCharge <= perPerson
+										) {
+											return (
+												<Card>
+													<CardItem>
+														<Left>
+															<Thumbnail
+																source={{
+																	uri:
+																		"https://www.kindpng.com/picc/m/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png"
+																}}
+															/>
+															<Body>
+																<Text>Venue Type : {text.serviceName}</Text>
+																<Text style={{ marginTop: 20 }}>
+																	Venue Name : {text.venueName}
+																</Text>
+															</Body>
+														</Left>
+													</CardItem>
+													<Button
+														style={{
+															backgroundColor: "#F56F6F",
+															margin: 10,
+															padding: 10,
+															left: 240,
+															width: 80,
+															borderRadius: 10
+														}}
+														onPress={() => {
+															setService(false);
+															setguestactive(true);
+															setplanactive(false);
+															setP(text.perPersonCharge);
+														}}
+													>
+														<Text style={{ color: "white", padding: 12 }}>
+															Next
+													</Text>
+													</Button>
+												</Card>
+											);
+										}
+									})}
+
+									<Text
+										style={{
+											fontSize: 18,
+											left: 135,
+											top: 20,
+											marginBottom: 10,
+											marginTop: 35
 										}}
-										size={10}
-									/>
-									<Thumbnail
-										style={{ left: 115, bottom: 55 }}
-										source={{
-											uri:
-												"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPf0C9QSm5-iGlGP1RkfgsKJOe_0N6EesgxQ&usqp=CAU"
-										}}
-									/>
-									{console.log("ajmal")}
-									<Thumbnail
-										style={{ left: 190, bottom: 110 }}
-										source={{
-											uri:
-												"https://i.pinimg.com/600x315/72/f3/8f/72f38fe442abadd278bc71eb9ef333b0.jpg"
-										}}
-									/>
-								</View>
-							</Content>
-						</Container>
-					) : null
+									>
+										Follow us on{" "}
+									</Text>
+									<View style={{ margin: 20, paddingLeft: 25 }}>
+										<Thumbnail
+											style={{ left: 40 }}
+											source={{
+												uri:
+													"https://www.iconfinder.com/data/icons/vector-brand-logos/40/Instagram-512.png"
+											}}
+											size={10}
+										/>
+										<Thumbnail
+											style={{ left: 115, bottom: 55 }}
+											source={{
+												uri:
+													"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTPf0C9QSm5-iGlGP1RkfgsKJOe_0N6EesgxQ&usqp=CAU"
+											}}
+										/>
+										{console.log("ajmal")}
+										<Thumbnail
+											style={{ left: 190, bottom: 110 }}
+											source={{
+												uri:
+													"https://i.pinimg.com/600x315/72/f3/8f/72f38fe442abadd278bc71eb9ef333b0.jpg"
+											}}
+										/>
+									</View>
+								</Content>
+							</Container>
+						) : null
 				) : null}
 			</Content>
 		</Container>
 	);
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+	checklist: {
+		fontSize: 18,
+		fontWeight: "bold"
+
+	},
+	totalBudget: {
+		textAlign: "center",
+		fontSize: 20,
+		marginTop: 40
+	},
+	budget: {
+		fontSize: 30,
+		fontWeight: "bold"
+
+	}
+});
 export default PlanningTools;
